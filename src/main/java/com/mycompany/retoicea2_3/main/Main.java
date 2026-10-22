@@ -1,4 +1,4 @@
-package com.mycompany.retoicea2_3;
+package com.mycompany.retoicea2_3.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

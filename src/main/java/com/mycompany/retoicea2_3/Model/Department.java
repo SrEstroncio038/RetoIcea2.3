@@ -8,6 +8,6 @@ package com.mycompany.retoicea2_3.Model;
  *
  * @author asola
  */
-public enum Departamento {
+public enum Department {
     
 }

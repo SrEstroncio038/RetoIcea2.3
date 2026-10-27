@@ -12,7 +12,7 @@ import java.time.LocalDate;
  */
 public class Worker extends Usuario{
     private int id;
-    private Departamento department;
+    private Department department;
     private int seniority;
 
     public int getId() {
@@ -23,11 +23,11 @@ public class Worker extends Usuario{
         this.id = id;
     }
 
-    public Departamento getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(Departamento department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
@@ -42,7 +42,7 @@ public class Worker extends Usuario{
     public Worker() {
     }
 
-    public Worker(int id, Departamento department, int seniority, String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate) {
+    public Worker(int id, Department department, int seniority, String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate) {
         super(name, surname, birthPlace, pasword, user, birthDate);
         this.id = id;
         this.department = department;

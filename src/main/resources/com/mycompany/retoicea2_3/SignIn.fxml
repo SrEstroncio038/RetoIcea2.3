@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.retoicea2_3.Controller.SignInControlles">
    <top>
       <Pane prefHeight="35.0" prefWidth="600.0" style="-fx-background-color: D4E1F5;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="home" layoutX="7.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Home" textFill="#004c99" />
+            <Button fx:id="home" layoutX="7.0" layoutY="5.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: D4E1F5;" text="Home" textFill="#004c99" />
          </children></Pane>
    </top>
    <bottom>

@@ -6,12 +6,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="300.0" minWidth="500.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="300.0" minWidth="500.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.retoicea2_3.Controller.MainViewController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="47.0" spacing="10.0" style="-fx-background-color: D4E1F5;" BorderPane.alignment="CENTER">
          <padding>
@@ -23,8 +22,8 @@
             <Button fx:id="mProduct" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Manager Products" textFill="#004c99" />
             <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="logout" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Log Out" textFill="#004c99" />
-            <Button fx:id="singin" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Sign in" textFill="#004c99" />
-            <Button fx:id="login" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Login" textFill="#004c99" />
+            <Button fx:id="singin" mnemonicParsing="false" onAction="#SignIn" style="-fx-background-color: D4E1F5;" text="Sign in" textFill="#004c99" />
+            <Button fx:id="login" mnemonicParsing="false" onAction="#logIn" style="-fx-background-color: D4E1F5;" text="Login" textFill="#004c99" />
          </children>
       </HBox>
    </top>

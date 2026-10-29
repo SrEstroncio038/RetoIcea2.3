@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="300.0" minWidth="500.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="47.0" spacing="10.0" style="-fx-background-color: D4E1F5;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="14.0" right="14.0" />
+         </padding>
+         <children>
+            <Button fx:id="profile" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Boton" textFill="#004c99" />
+            <Button fx:id="mworker" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Manager Workers" textFill="#004c99" />
+            <Button fx:id="mProduct" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Manager Products" textFill="#004c99" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="logout" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Log Out" textFill="#004c99" />
+            <Button fx:id="singin" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Sign in" textFill="#004c99" />
+            <Button fx:id="login" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Login" textFill="#004c99" />
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER_LEFT" prefHeight="31.0" style="-fx-background-color: #004C99;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="14.0" right="14.0" />
+         </padding>
+         <children>
+            <Label text="Copyright: Asier, Etna and Rebeca" textFill="#d4e1f5" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label text="Contact:     icea@icea.com" textFill="#d4e1f5" />
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="40.0" right="40.0" top="14.0" />
+         </padding>
+         <children>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Welcome to ICEA!" textFill="#004c99">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="List of Available Products" />
+            <ListView VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

@@ -10,7 +10,8 @@ import java.time.LocalDate;
  *
  * @author asola
  */
-public class Admin extends Usuario{
+public class Admin extends Usuario {
+
     private int id;
 
     public int getId() {
@@ -21,17 +22,16 @@ public class Admin extends Usuario{
         this.id = id;
     }
 
-    public Admin() {}
+    public Admin() {
+    }
 
-    public Admin(int id, String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate) {
-        super(name, surname, birthPlace, pasword, user, birthDate);
-        this.id = id;
+    public Admin(String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate, Addres address) {
+        super(name, surname, birthPlace, pasword, user, birthDate, address);
     }
 
     @Override
     public String toString() {
         return "Admin{" + "id=" + id + '}';
     }
-    
-    
+
 }

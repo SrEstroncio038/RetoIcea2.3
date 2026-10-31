@@ -21,8 +21,8 @@
             <Button fx:id="mworker" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Manager Workers" textFill="#004c99" />
             <Button fx:id="mProduct" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Manager Products" textFill="#004c99" />
             <Region HBox.hgrow="ALWAYS" />
-            <Button fx:id="logout" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Log Out" textFill="#004c99" />
-            <Button fx:id="singin" mnemonicParsing="false" onAction="#SignIn" style="-fx-background-color: D4E1F5;" text="Sign in" textFill="#004c99" />
+            <Button fx:id="logout" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: D4E1F5;" text="Log Out" textFill="#004c99" />
+            <Button fx:id="singin" mnemonicParsing="false" onAction="#signIn" style="-fx-background-color: D4E1F5;" text="Sign in" textFill="#004c99" />
             <Button fx:id="login" mnemonicParsing="false" onAction="#logIn" style="-fx-background-color: D4E1F5;" text="Login" textFill="#004c99" />
          </children>
       </HBox>

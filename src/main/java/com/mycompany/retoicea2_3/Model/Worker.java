@@ -42,12 +42,13 @@ public class Worker extends Usuario{
     public Worker() {
     }
 
-    public Worker(int id, Department department, int seniority, String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate) {
-        super(name, surname, birthPlace, pasword, user, birthDate);
-        this.id = id;
+    public Worker(Department department, String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate, Addres address) {
+        super(name, surname, birthPlace, pasword, user, birthDate, address);
         this.department = department;
-        this.seniority = seniority;
+        this.seniority = 0;
     }
+
+  
 
     @Override
     public String toString() {

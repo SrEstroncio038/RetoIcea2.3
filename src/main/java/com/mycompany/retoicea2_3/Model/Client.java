@@ -53,13 +53,12 @@ public class Client extends Usuario {
     public Client() {
     }
 
-    public Client(String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate) {
-        super(name, surname, birthPlace, pasword, user, birthDate);
+    public Client(String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate, Addres address) {
+        super(name, surname, birthPlace, pasword, user, birthDate, address);
         this.purchases = new ArrayList<Purchase>();
         this.refounds = new ArrayList<Refounds>();
         this.soldProducts = new ArrayList<Product>();
     }
 
-    
     
 }

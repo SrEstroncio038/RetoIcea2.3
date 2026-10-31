@@ -8,7 +8,8 @@ package com.mycompany.retoicea2_3.Model;
  *
  * @author asola
  */
-class Address {
+public class Addres {
+
     private int houseNumber;
     private String name;
     private int floor;
@@ -46,20 +47,19 @@ class Address {
         this.letter = letter;
     }
 
-    public Address(int houseNumber, String name, int floor, char letter) {
+    public Addres(int houseNumber, String name, int floor, char letter) {
         this.houseNumber = houseNumber;
         this.name = name;
         this.floor = floor;
         this.letter = letter;
     }
 
-    public Address() {
+    public Addres() {
     }
-    
+
     @Override
     public String toString() {
         return "Address{" + "houseNumber=" + houseNumber + ", name=" + name + ", floor=" + floor + ", letter=" + letter + '}';
     }
-    
-    
+
 }

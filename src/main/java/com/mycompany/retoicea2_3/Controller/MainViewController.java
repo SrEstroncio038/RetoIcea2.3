@@ -32,7 +32,7 @@ public class MainViewController implements Initializable {
     @FXML
     private Button logout;
 
-    public static Usuario u = null;
+    public static Usuario logedUser;
     @FXML
     private Button singin;
     @FXML
@@ -48,13 +48,13 @@ public class MainViewController implements Initializable {
         profile.setVisible(false);
         mworker.setVisible(false);
         logout.setVisible(false);
-        if (u != null) {
-            if (u instanceof Admin) {
+        if (logedUser != null) {
+            if (logedUser instanceof Admin) {
                 mProduct.setVisible(true);
-            } else if (u instanceof Client) {
-                profile.setText(u.getName());
+            } else if (logedUser instanceof Client) {
+                profile.setText(logedUser.getName());
                 profile.setVisible(true);
-            } else if (u instanceof Worker) {
+            } else if (logedUser instanceof Worker) {
                 mProduct.setVisible(false);
             }
         }
@@ -66,8 +66,14 @@ public class MainViewController implements Initializable {
     }
 
     @FXML
-    public void SignIn() throws IOException {
+    public void signIn() throws IOException {
         App.setRoot("SignIn");
+    }
+    
+    @FXML
+    public void logOut() throws IOException{
+        logedUser = null;
+        App.setRoot("MainView");
     }
 
 }

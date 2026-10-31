@@ -13,10 +13,11 @@ import java.time.LocalDate;
 public abstract class Usuario {
     private String name;
     private String surname;
-    private String birthPlace;
+    private String city;
     private String pasword;
     private String user;
     private LocalDate birthDate;
+    private Addres address;
 
     public String getName() {
         return name;
@@ -35,11 +36,11 @@ public abstract class Usuario {
     }
 
     public String getBirthPlace() {
-        return birthPlace;
+        return city;
     }
 
     public void setBirthPlace(String birthPlace) {
-        this.birthPlace = birthPlace;
+        this.city = birthPlace;
     }
 
     public String getPasword() {
@@ -69,18 +70,19 @@ public abstract class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate) {
+    public Usuario(String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate, Addres address) {
         this.name = name;
         this.surname = surname;
-        this.birthPlace = birthPlace;
+        this.city = birthPlace;
         this.pasword = pasword;
         this.user = user;
         this.birthDate = birthDate;
+        this.address = address;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "name=" + name + ", surname=" + surname + ", birthPlace=" + birthPlace + ", pasword=" + pasword + ", user=" + user + ", birthDate=" + birthDate + '}';
+        return "Usuario{" + "name=" + name + ", surname=" + surname + ", birthPlace=" + city + ", pasword=" + pasword + ", user=" + user + ", birthDate=" + birthDate + '}';
     }
     
     

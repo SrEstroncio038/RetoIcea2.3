@@ -17,7 +17,7 @@ public class Purchase {
     private float totalPrice;
     private ArrayList<Product> products;
     private LocalDate buyDate;
-    private Address address;
+    private Addres address;
 
     public int getNumber() {
         return number;
@@ -59,18 +59,18 @@ public class Purchase {
         this.buyDate = buyDate;
     }
 
-    public Address getAddress() {
+    public Addres getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Addres address) {
         this.address = address;
     }
 
     public Purchase() {
     }
 
-    public Purchase(int number, LocalDate deliveryDate, float totalPrice, ArrayList<Product> products, LocalDate buyDate, Address address) {
+    public Purchase(int number, LocalDate deliveryDate, float totalPrice, ArrayList<Product> products, LocalDate buyDate, Addres address) {
         this.number = number;
         this.deliveryDate = deliveryDate;
         this.totalPrice = totalPrice;

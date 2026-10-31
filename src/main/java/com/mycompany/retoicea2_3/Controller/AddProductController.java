@@ -4,6 +4,7 @@
  */
 package com.mycompany.retoicea2_3.Controller;
 
+import com.mycompany.retoicea2_3.Model.Client;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -50,6 +51,12 @@ public class AddProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+        chkPreOwned.setVisible(false);
+        if (MainViewController.logedUser instanceof Client) {
+            chkPreOwned.setSelected(true);
+        }else{
+            chkPreOwned.setSelected(false);
+        }
+    }
+
 }

@@ -4,6 +4,7 @@
  */
 package com.mycompany.retoicea2_3.Model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -11,6 +12,7 @@ import java.util.ArrayList;
  * @author asola
  */
 public class Client extends Usuario {
+
     private int id;
     private ArrayList<Purchase> purchases;
     private ArrayList<Refounds> refounds;
@@ -47,6 +49,17 @@ public class Client extends Usuario {
     public void setSoldProducts(ArrayList<Product> soldProducts) {
         this.soldProducts = soldProducts;
     }
+
+    public Client() {
+    }
+
+    public Client(String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate) {
+        super(name, surname, birthPlace, pasword, user, birthDate);
+        this.purchases = new ArrayList<Purchase>();
+        this.refounds = new ArrayList<Refounds>();
+        this.soldProducts = new ArrayList<Product>();
+    }
+
     
     
 }

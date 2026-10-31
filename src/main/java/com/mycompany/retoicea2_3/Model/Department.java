@@ -9,5 +9,5 @@ package com.mycompany.retoicea2_3.Model;
  * @author asola
  */
 public enum Department {
-    
+    IT, SALES, MARKETING;  
 }

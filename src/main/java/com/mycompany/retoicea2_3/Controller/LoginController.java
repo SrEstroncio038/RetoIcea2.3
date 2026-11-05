@@ -41,12 +41,12 @@ public class LoginController implements Initializable {
 
     @FXML
     public void login() throws IOException{
-        if(logear(txtUser.getText(), txtPassword.getText()) == null){
-            //popup de error
-        }else{
-            MainViewController.logedUser = logear(txtUser.getText(), txtPassword.getText());
-            App.setRoot("MainView");
-        }
+//        if(logear(txtUser.getText(), txtPassword.getText()) == null){
+//            //popup de error
+//        }else{
+//            MainViewController.logedUser = logear(txtUser.getText(), txtPassword.getText());
+//            App.setRoot("MainView");
+//        }
         
     }
     

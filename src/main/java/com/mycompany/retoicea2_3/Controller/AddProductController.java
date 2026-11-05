@@ -5,8 +5,11 @@
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Model.Client;
+import com.mycompany.retoicea2_3.main.App;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -54,9 +57,19 @@ public class AddProductController implements Initializable {
         chkPreOwned.setVisible(false);
         if (MainViewController.logedUser instanceof Client) {
             chkPreOwned.setSelected(true);
-        }else{
+        } else {
             chkPreOwned.setSelected(false);
         }
+    }
+
+    @FXML
+    private void home(ActionEvent event) throws IOException {
+        App.setRoot("MainView");
+    }
+    
+     @FXML
+    private void back(ActionEvent event) throws IOException {
+        App.setRoot("MainView");
     }
 
 }

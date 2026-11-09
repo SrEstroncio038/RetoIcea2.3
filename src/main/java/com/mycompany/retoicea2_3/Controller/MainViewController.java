@@ -10,9 +10,11 @@ import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -22,7 +24,7 @@ import javafx.scene.control.TextField;
  * @author asola
  */
 public class MainViewController implements Initializable {
-
+    
     @FXML
     private Button profile;
     @FXML
@@ -33,10 +35,13 @@ public class MainViewController implements Initializable {
     private Button logout;
 
     public static Usuario logedUser;
+    
     @FXML
     private Button singin;
     @FXML
     private Button login;
+    @FXML
+    private ListView<String> products;
 
     /**
      * Initializes the controller class.
@@ -44,6 +49,9 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        ProductController productController = new ProductController();
+        ObservableList<String> productos = productController.mostrarProductos();
+        products.setItems(productos);
         mProduct.setVisible(false);
         profile.setVisible(false);
         mworker.setVisible(false);

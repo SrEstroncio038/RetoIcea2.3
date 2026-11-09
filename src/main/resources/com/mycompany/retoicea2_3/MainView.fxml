@@ -51,7 +51,7 @@
                </font>
             </Label>
             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="List of Available Products" />
-            <ListView VBox.vgrow="ALWAYS" />
+            <ListView fx:id="products" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </center>

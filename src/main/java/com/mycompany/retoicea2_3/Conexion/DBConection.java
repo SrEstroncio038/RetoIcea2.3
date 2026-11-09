@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class DBConection {
 
-    private static final String ARCHIVO_PROPIEDADES = "db.properties";
+    private static final String ARCHIVO_PROPIEDADES = "/com/mycompany/retoicea2_3/db.properties";
 
     private static DBConection instancia;
     private MongoClient cliente;
@@ -40,8 +40,7 @@ public class DBConection {
 
     private Properties cargarPropiedades() {
         Properties props = new Properties();
-        try (InputStream is = getClass().getClassLoader()
-                .getResourceAsStream(ARCHIVO_PROPIEDADES)) {
+        try (InputStream is = DBConection.class.getResourceAsStream(ARCHIVO_PROPIEDADES)) {
             if (is == null) {
                 throw new RuntimeException("No se encontró " + ARCHIVO_PROPIEDADES
                         + " en el classpath");

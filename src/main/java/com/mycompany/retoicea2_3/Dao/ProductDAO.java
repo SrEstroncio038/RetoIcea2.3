@@ -4,7 +4,7 @@
  */
 package com.mycompany.retoicea2_3.Dao;
 
-import java.util.List;
+import com.mycompany.retoicea2_3.Model.Product;
 import javafx.collections.ObservableList;
 
 /**
@@ -12,5 +12,9 @@ import javafx.collections.ObservableList;
  * @author asola
  */
 public interface ProductDAO {
-    public ObservableList<String> mostrarProductos(); 
+    public ObservableList<String> showAllProductos(); 
+    
+    public Product showOneProduct(String name);
+    
+    public void addProduct(Product p);
 }

@@ -5,6 +5,7 @@
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Model.*;
+import com.mycompany.retoicea2_3.Model.Product;
 import com.mycompany.retoicea2_3.Model.Usuario;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
@@ -24,7 +25,7 @@ import javafx.scene.control.TextField;
  * @author asola
  */
 public class MainViewController implements Initializable {
-    
+
     @FXML
     private Button profile;
     @FXML
@@ -35,7 +36,9 @@ public class MainViewController implements Initializable {
     private Button logout;
 
     public static Usuario logedUser;
-    
+
+    public static Product selectedProduct;
+
     @FXML
     private Button singin;
     @FXML
@@ -43,14 +46,27 @@ public class MainViewController implements Initializable {
     @FXML
     private ListView<String> products;
 
+    ProductController productController = new ProductController();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        ProductController productController = new ProductController();
-        ObservableList<String> productos = productController.mostrarProductos();
+        selectedProduct = null;
+        ObservableList<String> productos = productController.showAllProductos();
+        products.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                selectedProduct = productController.showOneProduct(products.getSelectionModel().getSelectedItem().split(", precio: ")[0].replace("Producto:", ""));
+                if (selectedProduct != null) {
+                    try {
+                        App.setRoot("ViewProduct");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
         products.setItems(productos);
         mProduct.setVisible(false);
         profile.setVisible(false);
@@ -77,9 +93,9 @@ public class MainViewController implements Initializable {
     public void signIn() throws IOException {
         App.setRoot("SignIn");
     }
-    
+
     @FXML
-    public void logOut() throws IOException{
+    public void logOut() throws IOException {
         logedUser = null;
         App.setRoot("MainView");
     }

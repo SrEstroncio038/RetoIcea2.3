@@ -4,7 +4,9 @@
  */
 package com.mycompany.retoicea2_3.Controller;
 
+import com.mycompany.retoicea2_3.Model.Characteristics;
 import com.mycompany.retoicea2_3.Model.Client;
+import com.mycompany.retoicea2_3.Model.Product;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
 import java.net.URL;
@@ -48,6 +50,8 @@ public class AddProductController implements Initializable {
     @FXML
     private Button btnSave;
 
+    ProductController productController = new ProductController();
+
     /**
      * Initializes the controller class.
      */
@@ -66,10 +70,17 @@ public class AddProductController implements Initializable {
     private void home(ActionEvent event) throws IOException {
         App.setRoot("MainView");
     }
-    
-     @FXML
+
+    @FXML
     private void back(ActionEvent event) throws IOException {
         App.setRoot("MainView");
+    }
+
+    @FXML
+    private void addProduct() {
+        Characteristics c = new Characteristics(txtMaterial.getText(), txtColour.getText(), Float.valueOf(txtWeight.getText()), Float.valueOf(txtHigh.getText()), Float.valueOf(txtWidth.getText()));
+        Product p = new Product(txtName.getText(), Float.parseFloat(txtPrice.getText()), Integer.parseInt(txtStock.getText()), chkPreOwned.isSelected(), c);
+        productController.addProduct(p);
     }
 
 }

@@ -4,22 +4,34 @@
  */
 package com.mycompany.retoicea2_3.Model;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author asola
  */
-class Product {
-    private int id;
+public class Product {
+
+    private ObjectId id;
     private String nombre;
     private float precio;
     private int stock;
     private boolean seminuevo;
+    private Characteristics characteristics;
 
-    public int getId() {
+    public Characteristics getCharacteristics() {
+        return characteristics;
+    }
+
+    public void setCharacteristics(Characteristics characteristics) {
+        this.characteristics = characteristics;
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -57,18 +69,27 @@ class Product {
 
     public Product() {
     }
-    
-    public Product(int id, String nombre, float precio, int stock, boolean seminuevo) {
+
+    public Product(ObjectId id, String nombre, float precio, int stock, boolean seminuevo, Characteristics characteristics) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
         this.seminuevo = seminuevo;
+        this.characteristics = characteristics;
+    }
+
+    public Product(String nombre, float precio, int stock, boolean seminuevo, Characteristics characteristics) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+        this.seminuevo = seminuevo;
+        this.characteristics = characteristics;
     }
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", seminuevo=" + seminuevo + '}';
+        return "Product{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", seminuevo=" + seminuevo + ", characteristics=" + characteristics + '}';
     }
-    
+
 }

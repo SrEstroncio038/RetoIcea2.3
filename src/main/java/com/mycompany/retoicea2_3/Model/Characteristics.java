@@ -9,10 +9,20 @@ package com.mycompany.retoicea2_3.Model;
  * @author asola
  */
 public class Characteristics {
+
+    private String material;
     private String color;
     private float weight;
     private float height;
     private float width;
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
 
     public String getColor() {
         return color;
@@ -46,12 +56,8 @@ public class Characteristics {
         this.width = width;
     }
 
-    @Override
-    public String toString() {
-        return "Characteristics{" + "color=" + color + ", weight=" + weight + ", height=" + height + ", width=" + width + '}';
-    }
-
-    public Characteristics(String color, float weight, float height, float width) {
+    public Characteristics(String material, String color, float weight, float height, float width) {
+        this.material = material;
         this.color = color;
         this.weight = weight;
         this.height = height;
@@ -60,6 +66,10 @@ public class Characteristics {
 
     public Characteristics() {
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Characteristics{" + "material=" + material + ", color=" + color + ", weight=" + weight + ", height=" + height + ", width=" + width + '}';
+    }
+
 }

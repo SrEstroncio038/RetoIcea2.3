@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -70,29 +71,53 @@ public class SignInControlles implements Initializable {
         boolean correct = true;
         if (!name.getText().matches("^[a-zA-Z]+$") || name.getText() == null) {
             correct = false;
-            //popup
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("SingnIn Error");
+            alert.setContentText("Invalid name.");
+            alert.showAndWait();
         } else if (user.getText() == null) {
             correct = false;
-            //popup
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("SingnIn Error");
+            alert.setContentText("Invalid username.");
+            alert.showAndWait();
         } else if (!sname.getText().matches("^[a-zA-Z]+$") || sname.getText() == null) {
             correct = false;
-            //popup
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("SingnIn Error");
+            alert.setContentText("Invalid surname.");
+            alert.showAndWait();
         } else if (!city.getText().matches("^[a-zA-Z]+$") || city.getText() == null) {
             correct = false;
-            //popup
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("SingnIn Error");
+            alert.setContentText("Invalid city.");
+            alert.showAndWait();
         } else if (birthday.getValue() == null) {
             correct = false;
-            //popup
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("SingnIn Error");
+            alert.setContentText("Invalid date.");
+            alert.showAndWait();
         } else if (!passwrd.getText().matches("^[a-zA-Z ]+,\\s*(\\d+),\\s*(\\d+),\\s*([a-dA-D])$") || passwrd.getText() == null) {
             correct = false;
-            //popup
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("SingnIn Error");
+            alert.setContentText("Invalid password.");
+            alert.showAndWait();
         }
         if (!confirmPasswrd.getText().equals(passwrd.getText())) {
             correct = false;
-            //popup
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("SingnIn Error");
+            alert.setContentText("Password doesn't match.");
+            alert.showAndWait();
         }
         if (addres.getText().matches("^[a-zA-Z ]+,\\s*(\\d+),\\s*(\\d+),\\s*([A-D])$")) {
-
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("SingnIn Error");
+            alert.setContentText("Invalid addres.");
+            alert.showAndWait();
         }
         if (correct) {
             Addres a = new Addres(Integer.parseInt(addres.getText().split(",")[1]), addres.getText().split(",")[0], Integer.parseInt(addres.getText().split(",")[2]), addres.getText().split(",")[3].charAt(0));

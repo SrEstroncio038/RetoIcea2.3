@@ -43,6 +43,7 @@ public class CreateOfferController implements Initializable {
 
     ProductController productController = new ProductController();
     OfferController offerController = new OfferController();
+
     /**
      * Initializes the controller class.
      */
@@ -78,10 +79,27 @@ public class CreateOfferController implements Initializable {
             Product p = productController.showOneProduct(cmbProduct.getSelectionModel().getSelectedItem().split(", precio: ")[0].replace("Producto:", ""));
             Offer o = new Offer(p.getId(), Integer.parseInt(txtDiscount.getText()), date.getValue());
             offerController.addOffer(o);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Offer created");
             alert.setContentText("Offer created successfully");
+            alert.showAndWait();
         }
+    }
 
+    @FXML
+    public void deleteOffer() {
+        Product p = productController.showOneProduct(cmbProduct.getSelectionModel().getSelectedItem().split(", precio: ")[0].replace("Producto:", ""));
+        Offer o = new Offer(p.getId(), Integer.parseInt(txtDiscount.getText()), date.getValue());
+        if(offerController.showOneOffer(o) == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Offer not found");
+           ;
+        }else{
+            offerController.deleteOffer(o);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Offer deleted");
+            alert.setContentText("Offer deleted successfully");
+            alert.showAndWait();
+        }
     }
 }

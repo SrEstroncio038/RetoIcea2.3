@@ -13,9 +13,19 @@ import com.mycompany.retoicea2_3.Model.Offer;
  * @author asola
  */
 public class OfferController {
+
     private final OfferDAO dao = new ImplementationOfferBD();
-    
-    public void addOffer(Offer o){
-        dao.addOffer(o);
+
+    public void addOffer(Offer offer) {
+        dao.addOffer(offer);
     }
+
+    public void deleteOffer(Offer offer) {
+        dao.deleteOffer(offer);
+    }
+
+    public Offer showOneOffer(Offer o){
+        return dao.showOneOffer(o);
+    }
+
 }

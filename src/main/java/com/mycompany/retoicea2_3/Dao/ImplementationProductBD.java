@@ -11,7 +11,7 @@ import com.mycompany.retoicea2_3.Conexion.DBConection;
 import java.util.List;
 import javafx.collections.ObservableList;
 import com.mongodb.client.FindIterable;
-import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.model.Filters;
 import com.mycompany.retoicea2_3.Exceptions.ProductExistsException;
 import com.mycompany.retoicea2_3.Model.Product;
 import org.bson.Document;
@@ -38,7 +38,7 @@ public class ImplementationProductBD implements ProductDAO {
     public Product showOneProduct(String name) {
         Characteristics c = new Characteristics();
         MongoCollection<Document> resultados = DBConection.getInstancia().getColeccion("products");
-        Document producto = resultados.find(eq("productName", name)).first();
+        Document producto = resultados.find(Filters.eq("productName", name)).first();
         Document cahr = producto.get("characteristics", Document.class);
         Product p = null;
         if (cahr != null) {

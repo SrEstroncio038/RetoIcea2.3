@@ -64,7 +64,7 @@
                 <HBox alignment="CENTER" spacing="40.0">
                     <children>
                         <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#createOffer" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Add" />
-                        <Button fx:id="btnRemove" mnemonicParsing="false" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Remove" />
+                        <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#deleteOffer" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Remove" />
                     </children>
                 </HBox>
             </children>

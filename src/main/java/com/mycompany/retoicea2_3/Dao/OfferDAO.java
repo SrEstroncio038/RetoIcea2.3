@@ -14,4 +14,7 @@ public interface OfferDAO {
 
     public void addOffer(Offer offer);
     
+    public void deleteOffer(Offer offer);
+    
+    public Offer showOneOffer(Offer o);
 }

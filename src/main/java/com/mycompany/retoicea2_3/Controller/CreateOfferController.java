@@ -76,8 +76,11 @@ public class CreateOfferController implements Initializable {
         }
         if (correct) {
             Product p = productController.showOneProduct(cmbProduct.getSelectionModel().getSelectedItem().split(", precio: ")[0].replace("Producto:", ""));
-            Offer o = new Offer(p.getId(), Integer.getInteger(txtDiscount.getText()), date.getValue());
+            Offer o = new Offer(p.getId(), Integer.parseInt(txtDiscount.getText()), date.getValue());
             offerController.addOffer(o);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Offer created");
+            alert.setContentText("Offer created successfully");
         }
 
     }

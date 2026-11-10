@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.mycompany.retoicea2_3.Controller;
 
+import com.mycompany.retoicea2_3.Dao.ImplementationLogInBD;
+import com.mycompany.retoicea2_3.Model.Usuario;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
 import java.net.URL;
@@ -15,11 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author asola
- */
 public class LoginController implements Initializable {
 
     @FXML
@@ -39,16 +32,32 @@ public class LoginController implements Initializable {
         // TODO
     }
 
-    @FXML
-    public void login() throws IOException{
-//        if(logear(txtUser.getText(), txtPassword.getText()) == null){
-//            //popup de error
-//        }else{
-//            MainViewController.logedUser = logear(txtUser.getText(), txtPassword.getText());
-//            App.setRoot("MainView");
-//        }
-        
+    private Usuario logear(String user, String password) {
+
+        ImplementationLogInBD dao = new ImplementationLogInBD();
+
+        for (Usuario u : dao.obtainUser()) { //recorrer usuarios para ver si existe ese user con esa contraseña
+            if (u.getUser().equals(user)&& u.getPasword().equals(password)) {
+                return u;
+            }
+        }
+        return null;
     }
-    
+
+    @FXML
+    public void login() throws IOException {
+
+        Usuario usuario = logear(
+                txtUser.getText(),
+                txtPassword.getText()
+        );
+
+        if (usuario == null) {
+            System.out.println("Usuario o contraseña incorrectos");
+        } else{
+            MainViewController.logedUser = usuario;
+            App.setRoot("MainView");
+        }
+    }
 
 }

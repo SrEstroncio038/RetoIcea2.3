@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.retoicea2_3.Dao;
 
 import com.mongodb.client.MongoCollection;
@@ -10,10 +6,6 @@ import com.mycompany.retoicea2_3.Conexion.DBConection;
 import com.mycompany.retoicea2_3.Model.Client;
 import org.bson.Document;
 
-/**
- *
- * @author asola
- */
 public class ImplementationUserBD implements UserDAO {
 
     @Override
@@ -22,13 +14,13 @@ public class ImplementationUserBD implements UserDAO {
         MongoDatabase db = DBConection.getInstancia().getBaseDatos();
         MongoCollection<Document> users = db.getCollection("users");
 
-        Document address = new Document()
+        Document address = new Document() //para el de address
                 .append("streetName", c.getAddress().getName())
                 .append("houseNumber", c.getAddress().getHouseNumber())
                 .append("floor", c.getAddress().getFloor())
                 .append("floorLetter", String.valueOf(c.getAddress().getLetter()));
 
-        Document user = new Document()
+        Document user = new Document() //para el user como tal
                 .append("username", c.getUser())
                 .append("name", c.getName())
                 .append("surname", c.getSurname())
@@ -38,6 +30,17 @@ public class ImplementationUserBD implements UserDAO {
                 .append("userType", "Client");
 
         users.insertOne(user);
+    }
+
+    public boolean usernameExists(String username) { //para que no repita user
+        MongoDatabase db = DBConection.getInstancia().getBaseDatos();
+        MongoCollection<Document> users = db.getCollection("users");
+        Document user = users.find(new Document("username", username)).first();
+        return user != null;
+    }
+
+    public boolean passwordValid(String password) {
+        return password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}$" ); //el patron para que sean rollo: Ana12345!
     }
 
 }

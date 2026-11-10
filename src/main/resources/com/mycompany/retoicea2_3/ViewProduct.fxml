@@ -17,7 +17,7 @@
                 <Insets left="12.0" right="12.0" />
             </padding>
             <children>
-                <Button fx:id="btnHome" mnemonicParsing="false" onAction="#goHomes" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Home" textFill="#004c99" />
+                <Button fx:id="btnHome" mnemonicParsing="false" onAction="#goHome" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Home" textFill="#004c99" />
             </children>
         </HBox>
     </top>

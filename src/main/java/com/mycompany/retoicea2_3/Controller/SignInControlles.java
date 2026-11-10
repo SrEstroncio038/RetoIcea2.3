@@ -4,6 +4,7 @@
  */
 package com.mycompany.retoicea2_3.Controller;
 
+import com.mycompany.retoicea2_3.Dao.ImplementationUserBD;
 import com.mycompany.retoicea2_3.Model.Addres;
 import com.mycompany.retoicea2_3.Model.Client;
 import com.mycompany.retoicea2_3.main.App;
@@ -99,7 +100,7 @@ public class SignInControlles implements Initializable {
             alert.setTitle("SingnIn Error");
             alert.setContentText("Invalid date.");
             alert.showAndWait();
-        } else if (!passwrd.getText().matches("^[a-zA-Z ]+,\\s*(\\d+),\\s*(\\d+),\\s*([a-dA-D])$") || passwrd.getText() == null) {
+        } else if (!passwrd.getText().matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}$") || passwrd.getText() == null) {
             correct = false;
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("SingnIn Error");
@@ -113,8 +114,9 @@ public class SignInControlles implements Initializable {
             alert.setContentText("Password doesn't match.");
             alert.showAndWait();
         }
-        if (addres.getText().matches("^[a-zA-Z ]+,\\s*(\\d+),\\s*(\\d+),\\s*([A-D])$")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+        if (!addres.getText().matches("^[a-zA-Z ]+,\\s*(\\d+),\\s*(\\d+),\\s*([A-D])$")) {
+            correct = false; //para que no se guarde
+            Alert alert = new Alert(Alert.AlertType.ERROR); //popups nde alerta
             alert.setTitle("SingnIn Error");
             alert.setContentText("Invalid addres.");
             alert.showAndWait();
@@ -122,7 +124,17 @@ public class SignInControlles implements Initializable {
         if (correct) {
             Addres a = new Addres(Integer.parseInt(addres.getText().split(",")[1]), addres.getText().split(",")[0], Integer.parseInt(addres.getText().split(",")[2]), addres.getText().split(",")[3].charAt(0));
             Client c = new Client(name.getText(), sname.getText(), city.getText(), passwrd.getText(), user.getText(), birthday.getValue(), a);
-            //añadir cliente
+            //registrar el cliente
+            ImplementationUserBD dao = new ImplementationUserBD();
+            if (dao.usernameExists(user.getText())) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("SignIn Error");
+                alert.setContentText("Username already exists.");
+                alert.showAndWait();
+                return;
+            }
+            dao.clientRegistration(c);
+            
             App.setRoot("Login");
         }
     }

@@ -11,6 +11,7 @@ import java.time.LocalDate;
  * @author asola
  */
 public abstract class Usuario {
+
     private String name;
     private String surname;
     private String city;
@@ -67,6 +68,14 @@ public abstract class Usuario {
         this.birthDate = birthDate;
     }
 
+    public Addres getAddress() {
+        return address;
+    }
+
+    public void setAddress(Addres address) {
+        this.address = address;
+    }
+
     public Usuario() {
     }
 
@@ -84,7 +93,5 @@ public abstract class Usuario {
     public String toString() {
         return "Usuario{" + "name=" + name + ", surname=" + surname + ", birthPlace=" + city + ", pasword=" + pasword + ", user=" + user + ", birthDate=" + birthDate + '}';
     }
-    
-    
-    
+
 }

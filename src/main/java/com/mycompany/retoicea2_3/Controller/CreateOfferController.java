@@ -4,12 +4,19 @@
  */
 package com.mycompany.retoicea2_3.Controller;
 
+import com.mycompany.retoicea2_3.Model.Offer;
+import com.mycompany.retoicea2_3.Model.Product;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 /**
@@ -24,22 +31,54 @@ public class CreateOfferController implements Initializable {
     @FXML
     private Button btnBack;
     @FXML
-    private ComboBox<?> cmbProduct;
+    private ComboBox<String> cmbProduct;
     @FXML
     private TextField txtDiscount;
-    @FXML
-    private TextField txtEndDate;
     @FXML
     private Button btnAdd;
     @FXML
     private Button btnRemove;
+    @FXML
+    private DatePicker date;
 
+    ProductController productController = new ProductController();
+    OfferController offerController = new OfferController();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        ObservableList<String> productos = productController.showAllProductos();
+        cmbProduct.setItems(productos);
+
+    }
+
+    @FXML
+    public void createOffer() {
+        boolean correct = true;
+        if (cmbProduct.getSelectionModel().getSelectedItem() == null) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setContentText("No product selected try again.");
+            alerta.showAndWait();
+            correct = false;
+        }
+        if (correct && (!txtDiscount.getText().matches("^\\d+$") || Integer.parseInt(txtDiscount.getText()) <= 0 || Integer.parseInt(txtDiscount.getText()) >= 100)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Not a valid discound");
+            alert.showAndWait();
+            correct = false;
+        }
+        if (correct && (date.getValue() == null || date.getValue().isBefore(LocalDate.now()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Not a valid date");
+            alert.showAndWait();
+            correct = false;
+        }
+        if (correct) {
+            Product p = productController.showOneProduct(cmbProduct.getSelectionModel().getSelectedItem().split(", precio: ")[0].replace("Producto:", ""));
+            Offer o = new Offer(p.getId(), Integer.getInteger(txtDiscount.getText()), date.getValue());
+            offerController.addOffer(o);
+        }
+
+    }
 }

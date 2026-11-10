@@ -69,7 +69,6 @@ public class ImplementationProductBD implements ProductDAO {
 
         MongoCollection<Document> productos = DBConection.getInstancia().getColeccion("products");
         productos.insertOne(product);
-        p.setId(product.getObjectId("_id"));
     }
 
 }

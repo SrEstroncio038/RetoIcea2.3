@@ -17,6 +17,15 @@ public class Client extends Usuario {
     private ArrayList<Purchase> purchases;
     private ArrayList<Refounds> refounds;
     private ArrayList<Product> soldProducts;
+    private ArrayList<Product> cart;
+
+    public ArrayList<Product> getCart() {
+        return cart;
+    }
+
+    public void setCart(ArrayList<Product> cart) {
+        this.cart = cart;
+    }
 
     public int getId() {
         return id;

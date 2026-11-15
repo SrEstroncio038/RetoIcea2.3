@@ -6,6 +6,8 @@ package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Model.Offer;
 import com.mycompany.retoicea2_3.Model.Product;
+import com.mycompany.retoicea2_3.main.App;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -55,6 +57,16 @@ public class CreateOfferController implements Initializable {
     }
 
     @FXML
+    public void goHome() throws IOException{
+        App.setRoot("MainView");
+    }
+    
+    @FXML
+    public void goBack() throws IOException{
+        App.setRoot("ManageProduct");
+    }
+
+    @FXML
     public void createOffer() {
         boolean correct = true;
         if (cmbProduct.getSelectionModel().getSelectedItem() == null) {
@@ -90,11 +102,11 @@ public class CreateOfferController implements Initializable {
     public void deleteOffer() {
         Product p = productController.showOneProduct(cmbProduct.getSelectionModel().getSelectedItem().split(", precio: ")[0].replace("Producto:", ""));
         Offer o = new Offer(p.getId(), Integer.parseInt(txtDiscount.getText()), date.getValue());
-        if(offerController.showOneOffer(o) == null){
+        if (offerController.showOneOffer(o) == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Offer not found");
-           ;
-        }else{
+            ;
+        } else {
             offerController.deleteOffer(o);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Offer deleted");

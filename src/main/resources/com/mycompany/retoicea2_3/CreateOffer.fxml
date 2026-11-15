@@ -21,11 +21,11 @@
                 <Insets left="12.0" right="12.0" />
             </padding>
             <children>
-                <Button fx:id="btnHome" mnemonicParsing="false" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Home" textFill="#004c99" />
+                <Button fx:id="btnHome" mnemonicParsing="false" onAction="#goHome" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Home" textFill="#004c99" />
 
                 <Region HBox.hgrow="ALWAYS" />
 
-                <Button fx:id="btnBack" mnemonicParsing="false" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Back" textFill="#004c99" />
+                <Button fx:id="btnBack" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Back" textFill="#004c99" />
             </children>
         </HBox>
     </top>

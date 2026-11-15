@@ -54,12 +54,13 @@ public class SignInControlles implements Initializable {
     @FXML
     private Button register;
 
+    private UserController userController = new UserController();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     @FXML
@@ -115,8 +116,8 @@ public class SignInControlles implements Initializable {
             alert.showAndWait();
         }
         if (!addres.getText().matches("^[a-zA-Z ]+,\\s*(\\d+),\\s*(\\d+),\\s*([A-D])$")) {
-            correct = false; //para que no se guarde
-            Alert alert = new Alert(Alert.AlertType.ERROR); //popups nde alerta
+            correct = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("SingnIn Error");
             alert.setContentText("Invalid addres.");
             alert.showAndWait();
@@ -124,18 +125,19 @@ public class SignInControlles implements Initializable {
         if (correct) {
             Addres a = new Addres(Integer.parseInt(addres.getText().split(",")[1]), addres.getText().split(",")[0], Integer.parseInt(addres.getText().split(",")[2]), addres.getText().split(",")[3].charAt(0));
             Client c = new Client(name.getText(), sname.getText(), city.getText(), passwrd.getText(), user.getText(), birthday.getValue(), a);
-            //registrar el cliente
-            ImplementationUserBD dao = new ImplementationUserBD();
-            if (dao.usernameExists(user.getText())) {
+            boolean exists = userController.clientRegistration(c);
+            if (exists) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("SignIn Error");
                 alert.setContentText("Username already exists.");
                 alert.showAndWait();
-                return;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("SignIn Complited");
+                alert.setContentText("SignIn successfully complited.");
+                alert.showAndWait();
+                App.setRoot("Login");
             }
-            dao.clientRegistration(c);
-            
-            App.setRoot("Login");
         }
     }
 

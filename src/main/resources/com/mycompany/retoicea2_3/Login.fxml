@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="205.0" minWidth="320.0" prefHeight="205.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.retoicea2_3.LoginController">
+<BorderPane minHeight="205.0" minWidth="320.0" prefHeight="205.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.retoicea2_3.Controller.LoginController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="47.0" style="-fx-background-color: D4E1F5;" BorderPane.alignment="CENTER">
          <padding>

@@ -1,6 +1,7 @@
 package com.mycompany.retoicea2_3.Controller;
 
-import com.mycompany.retoicea2_3.Dao.ImplementationLogInBD;
+import com.mycompany.retoicea2_3.Dao.ImplementationUserBD;
+import com.mycompany.retoicea2_3.Dao.UserDAO;
 import com.mycompany.retoicea2_3.Model.Usuario;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
@@ -24,20 +25,19 @@ public class LoginController implements Initializable {
     @FXML
     private Button btnContinue;
 
+    UserController userController = new UserController();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     private Usuario logear(String user, String password) {
 
-        ImplementationLogInBD dao = new ImplementationLogInBD();
-
-        for (Usuario u : dao.obtainUser()) { //recorrer usuarios para ver si existe ese user con esa contraseña
-            if (u.getUser().equals(user)&& u.getPasword().equals(password)) {
+        for (Usuario u : userController.obtainUser()) {
+            if (u.getUser().equals(user) && u.getPasword().equals(password)) {
                 return u;
             }
         }
@@ -54,7 +54,7 @@ public class LoginController implements Initializable {
 
         if (usuario == null) {
             System.out.println("Usuario o contraseña incorrectos");
-        } else{
+        } else {
             MainViewController.logedUser = usuario;
             App.setRoot("MainView");
         }

@@ -73,13 +73,15 @@ public class MainViewController implements Initializable {
         mworker.setVisible(false);
         logout.setVisible(false);
         if (logedUser != null) {
+            logout.setVisible(true);
             if (logedUser instanceof Admin) {
                 mProduct.setVisible(true);
+                mworker.setVisible(true);
             } else if (logedUser instanceof Client) {
                 profile.setText(logedUser.getName());
                 profile.setVisible(true);
             } else if (logedUser instanceof Worker) {
-                mProduct.setVisible(false);
+                mProduct.setVisible(true);
             }
         }
     }
@@ -100,4 +102,13 @@ public class MainViewController implements Initializable {
         App.setRoot("MainView");
     }
 
+    @FXML
+    public void manageWorkers() throws IOException {
+        App.setRoot("ManageWorkers");
+    }
+
+    @FXML
+    public void manageProduct() throws IOException {
+        App.setRoot("ManageProduct");
+    }
 }

@@ -20,7 +20,7 @@ public class ImplementationWorkerBD implements WorkerDAO{
     public ObservableList<String> showAllWorkers(){
         MongoCollection<Document> resultados=DBConection.getInstancia().getColeccion("users");
         ObservableList<String> items=FXCollections.observableArrayList();
-        for (Document doc: resultados.find()){
+        for (Document doc: resultados.find(Filters.eq("userType", "Worker"))){
             items.add(doc.getString("name")+" "+doc.getString("surname"));
         }
         return items;

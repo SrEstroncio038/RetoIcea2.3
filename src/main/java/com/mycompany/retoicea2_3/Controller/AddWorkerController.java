@@ -4,6 +4,8 @@
  */
 package com.mycompany.retoicea2_3.Controller;
 
+import com.mycompany.retoicea2_3.main.App;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -23,24 +25,6 @@ public class AddWorkerController implements Initializable {
     @FXML
     private Button btnBack;
     @FXML
-    private TextField txtName;
-    @FXML
-    private TextField txtSurnames;
-    @FXML
-    private TextField txtCity;
-    @FXML
-    private TextField txtBirthday;
-    @FXML
-    private TextField txtAddress;
-    @FXML
-    private TextField txtDepartment;
-    @FXML
-    private TextField txtAntique;
-    @FXML
-    private TextField txtPaysheet;
-    @FXML
-    private TextField txtUser;
-    @FXML
     private Button btnSave;
 
     /**
@@ -49,5 +33,10 @@ public class AddWorkerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
+    @FXML
+    public void save() throws IOException{
+        App.setRoot("ManageWorkers");
+    }
+    
     
 }

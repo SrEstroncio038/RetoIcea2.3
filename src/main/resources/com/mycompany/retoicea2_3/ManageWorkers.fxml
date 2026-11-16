@@ -3,36 +3,42 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="260.0" minWidth="320.0" prefHeight="320.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.retoicea2_3.Controller.ManageWorkersController">
+<BorderPane minHeight="260.0" minWidth="320.0" prefHeight="360.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.retoicea2_3.Controller.ManageWorkersController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-background-color: D4E1F5;" BorderPane.alignment="CENTER">
          <padding>
             <Insets left="12.0" right="12.0" />
          </padding>
          <children>
-            <Button fx:id="btnHome" mnemonicParsing="false" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Home" textFill="#004c99" />
+            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#home" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Home" textFill="#004c99" />
          </children>
       </HBox>
    </top>
    <center>
-      <VBox alignment="TOP_CENTER" spacing="22.0" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets bottom="20.0" left="40.0" right="40.0" top="35.0" />
-         </padding>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Manage Workers" textFill="#2B4C94">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-3.0" layoutY="14.0" prefHeight="34.0" prefWidth="474.0" text="Manage workers" textFill="#004c99">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
             </Label>
-            <Button fx:id="btnToSignUp" mnemonicParsing="false" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="To Sign Up" />
-            <Button fx:id="btnToRemove" mnemonicParsing="false" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="To Remove" />
-            <Button fx:id="btnModify" mnemonicParsing="false" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Modify" />
+            <ListView fx:id="workerList" layoutX="42.0" layoutY="57.0" prefHeight="200.0" prefWidth="384.0" />
          </children>
-      </VBox>
+      </Pane>
    </center>
+   <bottom>
+      <Pane prefHeight="48.0" prefWidth="467.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnToSignUp" layoutX="41.0" layoutY="10.0" mnemonicParsing="false" onAction="#singUp" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="To Sign Up" />
+            <Button fx:id="btnModify" layoutX="174.0" layoutY="10.0" mnemonicParsing="false" onAction="#modify" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Modify" />
+            <Button fx:id="btnToRemove" layoutX="307.0" layoutY="10.0" mnemonicParsing="false" onAction="#remove" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="To Remove" />
+         </children>
+      </Pane>
+   </bottom>
 </BorderPane>

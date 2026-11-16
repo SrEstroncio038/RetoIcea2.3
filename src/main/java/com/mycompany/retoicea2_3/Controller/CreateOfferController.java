@@ -57,12 +57,12 @@ public class CreateOfferController implements Initializable {
     }
 
     @FXML
-    public void goHome() throws IOException{
+    public void goHome() throws IOException {
         App.setRoot("MainView");
     }
-    
+
     @FXML
-    public void goBack() throws IOException{
+    public void goBack() throws IOException {
         App.setRoot("ManageProduct");
     }
 
@@ -100,13 +100,29 @@ public class CreateOfferController implements Initializable {
 
     @FXML
     public void deleteOffer() {
-        Product p = productController.showOneProduct(cmbProduct.getSelectionModel().getSelectedItem().split(", precio: ")[0].replace("Producto:", ""));
-        Offer o = new Offer(p.getId(), Integer.parseInt(txtDiscount.getText()), date.getValue());
-        if (offerController.showOneOffer(o) == null) {
+        Offer o = null;
+        boolean correct = true;
+        if (cmbProduct.getSelectionModel().getSelectedItem() == null) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setContentText("No product selected try again.");
+            alerta.showAndWait();
+            correct = false;
+        }
+        if (correct && (!txtDiscount.getText().matches("^\\d+$") || Integer.parseInt(txtDiscount.getText()) <= 0 || Integer.parseInt(txtDiscount.getText()) >= 100)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Offer not found");
-            ;
-        } else {
+            alert.setContentText("Not a valid discound");
+            alert.showAndWait();
+            correct = false;
+        }
+        if (correct && (date.getValue() == null || date.getValue().isBefore(LocalDate.now()))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Not a valid date");
+            alert.showAndWait();
+            correct = false;
+        }
+        if (correct) {
+            Product p = productController.showOneProduct(cmbProduct.getSelectionModel().getSelectedItem().split(", precio: ")[0].replace("Producto:", ""));
+            o = new Offer(p.getId(), Integer.parseInt(txtDiscount.getText()), date.getValue());
             offerController.deleteOffer(o);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Offer deleted");
@@ -114,4 +130,5 @@ public class CreateOfferController implements Initializable {
             alert.showAndWait();
         }
     }
+
 }

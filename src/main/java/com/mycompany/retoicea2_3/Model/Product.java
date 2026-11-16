@@ -89,7 +89,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", seminuevo=" + seminuevo + ", characteristics=" + characteristics + '}';
+        return nombre + " - " + String.format("%.2f", precio) + " €"
+                + (seminuevo ? " (seminuevo)" : " (nuevo)");
     }
 
 }

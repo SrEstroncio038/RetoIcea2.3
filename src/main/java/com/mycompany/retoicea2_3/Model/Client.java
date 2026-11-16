@@ -1,30 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.retoicea2_3.Model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-/**
- *
- * @author asola
- */
 public class Client extends Usuario {
 
     private int id;
-    private ArrayList<Purchase> purchases;
-    private ArrayList<Refounds> refounds;
-    private ArrayList<Product> soldProducts;
-    private ArrayList<Product> cart;
+    private ArrayList<Purchase> purchases = new ArrayList<Purchase>();
+    private ArrayList<Refounds> refounds = new ArrayList<Refounds>();
+    private ArrayList<Product> soldProducts = new ArrayList<Product>();
+    private ArrayList<Product> cart = new ArrayList<Product>();
 
     public ArrayList<Product> getCart() {
         return cart;
     }
 
-    public void setCart(ArrayList<Product> cart) {
-        this.cart = cart;
+    public void setCart(Product cart) {
+        this.cart.add(cart);
     }
 
     public int getId() {
@@ -39,24 +31,24 @@ public class Client extends Usuario {
         return purchases;
     }
 
-    public void setPurchases(ArrayList<Purchase> purchases) {
-        this.purchases = purchases;
+    public void setPurchases(Purchase purchases) {
+        this.purchases.add(purchases);
     }
 
     public ArrayList<Refounds> getRefounds() {
         return refounds;
     }
 
-    public void setRefounds(ArrayList<Refounds> refounds) {
-        this.refounds = refounds;
+    public void setRefounds(Refounds refounds) {
+        this.refounds.add(refounds);
     }
 
     public ArrayList<Product> getSoldProducts() {
         return soldProducts;
     }
 
-    public void setSoldProducts(ArrayList<Product> soldProducts) {
-        this.soldProducts = soldProducts;
+    public void setSoldProducts(Product soldProducts) {
+        this.soldProducts.add(soldProducts);
     }
 
     public Client() {
@@ -69,5 +61,4 @@ public class Client extends Usuario {
         this.soldProducts = new ArrayList<Product>();
     }
 
-    
 }

@@ -24,16 +24,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Client cliente = new Client("Juan", "Perez", "Bilbao", "password123", "juanp",
-                LocalDate.of(2000, 1, 1), new Addres(12, "Calle Mayor", 3, 'A'));
 
-        cliente.setCart(new Product(new ObjectId(), "Silla de roble", 79.99f, 40, false,
-                new Characteristics("Roble", "Marrón", 5f, 90f, 40f)));
-        cliente.setCart(new Product(new ObjectId(), "Mesa de comedor", 249.5f, 12, false,
-                new Characteristics("Madera", "Blanco", 25f, 75f, 120f)));
-        MainViewController.logedUser = cliente;
-
-        scene = new Scene(loadFXML("ConfirmPurchase"), 640, 480);
+        scene = new Scene(loadFXML("MainView"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }

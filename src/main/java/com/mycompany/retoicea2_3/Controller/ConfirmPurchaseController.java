@@ -7,6 +7,8 @@ package com.mycompany.retoicea2_3.Controller;
 import com.mycompany.retoicea2_3.Model.Client;
 import com.mycompany.retoicea2_3.Model.Product;
 import com.mycompany.retoicea2_3.Model.Purchase;
+import com.mycompany.retoicea2_3.main.App;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -60,7 +62,7 @@ public class ConfirmPurchaseController implements Initializable {
     }
 
     @FXML
-    public void confirmPurcahse() {
+    public void confirmPurcahse() throws IOException {
         boolean correct = true;
         if (!txtNameSurname.getText().matches("[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+(?:[ '-][A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)+") && correct) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -93,7 +95,15 @@ public class ConfirmPurchaseController implements Initializable {
             Purchase p = new Purchase(new ObjectId(), LocalDate.now(), LocalDate.now().plusDays(5), total, ((Client) MainViewController.logedUser).getAddress(), ((Client) MainViewController.logedUser).getCart());
             ((Client) MainViewController.logedUser).setPurchases(p);
             purchaseController.createPurchase(p);
+            ((Client) MainViewController.logedUser).deleteCart();
+            ((Client) MainViewController.logedUser).setPurchases(p);
+            App.setRoot("MainView");
         }
+    }
+
+    @FXML
+    public void goHome() throws IOException {
+        App.setRoot("MainView"); 
     }
 
 }

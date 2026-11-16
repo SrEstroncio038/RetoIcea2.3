@@ -19,6 +19,10 @@ public class Client extends Usuario {
         this.cart.add(cart);
     }
 
+    public void deleteCart() {
+        this.cart = new ArrayList<Product>();
+    }
+
     public int getId() {
         return id;
     }

@@ -130,6 +130,79 @@ public class CreateOfferControllerTest extends ApplicationTest {
         clickOn("Aceptar");
     }
 
+     @Test
+    public void borrarOferta() {
+        clickOn("#cmbProduct");
+        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("#txtDiscount").write("12");
+        DatePicker datePicker = lookup("#date").queryAs(DatePicker.class);
+        datePicker.setValue(LocalDate.now().plusYears(1));
+        clickOn("#btnRemove");
+        DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
+        assertNotNull(dialogPane);
+        assertEquals("Offer deleted successfully", dialogPane.getContentText());
+        clickOn("Aceptar");
+    }
+
+    
+    @Test
+    public void errorSiNoHayProductoSeleccionadoBorrar() {
+        clickOn("#btnRemove");
+        DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
+        assertNotNull(dialogPane);
+        assertEquals("No product selected try again.", dialogPane.getContentText());
+        clickOn("Aceptar");
+    }
+
+    @Test
+    public void errorDescuentoNullBorrar() {
+        clickOn("#cmbProduct");
+        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("#btnRemove");
+        DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
+        assertNotNull(dialogPane);
+        assertEquals("Not a valid discound", dialogPane.getContentText());
+        clickOn("Aceptar");
+    }
+
+    @Test
+    public void errorDescuentoNotValidBorrar() {
+        clickOn("#cmbProduct");
+        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("#txtDiscount").write("abc");
+        clickOn("#btnRemove");
+        DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
+        assertNotNull(dialogPane);
+        assertEquals("Not a valid discound", dialogPane.getContentText());
+        clickOn("Aceptar");
+    }
+
+    @Test
+    public void errorFechaNullBorrar() {
+        clickOn("#cmbProduct");
+        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("#txtDiscount").write("12");
+        clickOn("#btnRemove");
+        DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
+        assertNotNull(dialogPane);
+        assertEquals("Not a valid date", dialogPane.getContentText());
+        clickOn("Aceptar");
+    }
+
+    @Test
+    public void errorFechaNotValidBorrar() {
+        clickOn("#cmbProduct");
+        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("#txtDiscount").write("12");
+        DatePicker datePicker = lookup("#date").queryAs(DatePicker.class);
+        datePicker.setValue(LocalDate.now().minusYears(1));
+        clickOn("#btnRemove");
+        DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
+        assertNotNull(dialogPane);
+        assertEquals("Not a valid date", dialogPane.getContentText());
+        clickOn("Aceptar");
+    }
+
     @Test
     public void goHome() {
         clickOn("#btnHome");

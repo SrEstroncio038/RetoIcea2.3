@@ -7,15 +7,19 @@ import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import utils.LoggerClass;
 
 public class LoginController implements Initializable {
-
+    private static final Logger LOGGER = LoggerClass.getLogger();
     @FXML
     private Button home;
     @FXML
@@ -53,8 +57,13 @@ public class LoginController implements Initializable {
         );
 
         if (usuario == null) {
-            System.out.println("Usuario o contraseña incorrectos");
+            LOGGER.log(Level.WARNING, "Intento de login fallido: {0}", txtUser.getText());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setContentText("User or password are incorrect");
+            alert.showAndWait();
         } else {
+            LOGGER.log(Level.INFO, "Login correcto: {0}", usuario.getUser());
             MainViewController.logedUser = usuario;
             App.setRoot("MainView");
         }

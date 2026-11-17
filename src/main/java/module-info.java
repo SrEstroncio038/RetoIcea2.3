@@ -5,6 +5,8 @@ module com.mycompany.retoicea2_3 {
     requires org.mongodb.driver.core;
     requires org.mongodb.bson;
     requires java.base;
+    requires java.logging;
+
 
     opens com.mycompany.retoicea2_3 to javafx.fxml;
     opens com.mycompany.retoicea2_3.main to javafx.fxml;

@@ -6,10 +6,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="260.0" minWidth="320.0" prefHeight="373.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.retoicea2_3.Controller.ManageWorkersController">
+<BorderPane minHeight="260.0" minWidth="320.0" prefHeight="352.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.retoicea2_3.Controller.ManageWorkersController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-background-color: D4E1F5;" BorderPane.alignment="CENTER">
          <padding>
@@ -21,25 +21,30 @@
       </HBox>
    </top>
    <center>
-      <Pane prefHeight="291.0" prefWidth="467.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" spacing="12.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-3.0" layoutY="14.0" prefHeight="34.0" prefWidth="474.0" text="Manage workers" textFill="#004c99">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Manage workers" textFill="#004c99">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <ListView fx:id="workers" layoutX="42.0" layoutY="57.0" prefHeight="200.0" prefWidth="384.0" />
-            <Label fx:id="selectionLabel" layoutX="97.0" layoutY="267.0" prefHeight="17.0" prefWidth="267.0" textAlignment="CENTER" />
+            <ListView fx:id="workers" VBox.vgrow="ALWAYS" />
          </children>
-      </Pane>
+      </VBox>
    </center>
    <bottom>
-      <Pane prefHeight="48.0" prefWidth="467.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="55.0" spacing="15.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="15.0" right="15.0" top="5.0" />
+         </padding>
          <children>
-            <Button fx:id="btnToSignUp" layoutX="41.0" layoutY="10.0" mnemonicParsing="false" onAction="#singUp" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="To Sign Up" />
-            <Button fx:id="btnModify" layoutX="174.0" layoutY="10.0" mnemonicParsing="false" onAction="#modify" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Modify" />
-            <Button fx:id="btnToRemove" layoutX="307.0" layoutY="10.0" mnemonicParsing="false" onAction="#remove" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="To Remove" />
+            <Button fx:id="btnToSignUp" mnemonicParsing="false" onAction="#singUp" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Sign Up" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnModify" mnemonicParsing="false" onAction="#modify" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Modify" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnToRemove" mnemonicParsing="false" onAction="#remove" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Remove" HBox.hgrow="ALWAYS" />
          </children>
-      </Pane>
+      </HBox>
    </bottom>
 </BorderPane>

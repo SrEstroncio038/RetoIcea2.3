@@ -1,69 +1,60 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.retoicea2_3.Model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import org.bson.types.ObjectId;
 
-/**
- *
- * @author asola
- */
 public class Refounds {
 
-    private int number;
-    private LocalDate refoundDate;
-    private float totalPrice;
-    private ArrayList<Product> products;
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public LocalDate getRefoundDate() {
-        return refoundDate;
-    }
-
-    public void setRefoundDate(LocalDate refoundDate) {
-        this.refoundDate = refoundDate;
-    }
-
-    public float getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
-
-    public Refounds(int number, LocalDate refoundDate, float totalPrice, ArrayList<Product> products) {
-        this.number = number;
-        this.refoundDate = refoundDate;
-        this.totalPrice = totalPrice;
-        this.products = products;
-    }
+    private ObjectId refundId;
+    private LocalDate refundDate;
+    private double totalPrice;
+    private ArrayList<Product> refundProducts;
 
     public Refounds() {
     }
 
+    public Refounds(ObjectId refundId, LocalDate refundDate, double totalPrice, ArrayList<Product> refundProducts) {
+        this.refundId = refundId;
+        this.refundDate = refundDate;
+        this.totalPrice = totalPrice;
+        this.refundProducts = refundProducts;
+    }
+
+    public ObjectId getRefundId() {
+        return refundId;
+    }
+
+    public void setRefundId(ObjectId refundId) {
+        this.refundId = refundId;
+    }
+
+    public LocalDate getRefundDate() {
+        return refundDate;
+    }
+
+    public void setRefundDate(LocalDate refundDate) {
+        this.refundDate = refundDate;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public ArrayList<Product> getRefundProducts() {
+        return refundProducts;
+    }
+
+    public void setRefundProducts(ArrayList<Product> refundProducts) {
+        this.refundProducts = refundProducts;
+    }
+
     @Override
     public String toString() {
-        return "Refounds{" + "number=" + number + ", refoundDate=" + refoundDate + ", totalPrice=" + totalPrice + ", products=" + products + '}';
+        return refundDate + " - " + totalPrice + " €";
     }
-    
-    
 }

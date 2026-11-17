@@ -1,34 +1,22 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.retoicea2_3.Controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import com.mycompany.retoicea2_3.Dao.ImplementationRefoundBD;
+import com.mycompany.retoicea2_3.Dao.RefoundDAO;
+import com.mycompany.retoicea2_3.Model.Refounds;
 
 /**
- * FXML Controller class
  *
  * @author asola
  */
-public class RefoundController implements Initializable {
+public class RefoundController {
 
-    @FXML
-    private Button btnHome;
-    @FXML
-    private Button btnBack;
-    @FXML
-    private Button btnRefund;
+    private RefoundDAO dao = new ImplementationRefoundBD();
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
-    
+    public void createRefound(Refounds r) {
+        dao.createRefound(r);
+    }
 }

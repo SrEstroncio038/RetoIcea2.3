@@ -9,18 +9,18 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="340.0" minWidth="320.0" prefHeight="390.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.retoicea2_3.Controller.RefoundController">
+<BorderPane minHeight="340.0" minWidth="320.0" prefHeight="390.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.retoicea2_3.Controller.RefoundViewController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-background-color: D4E1F5;" BorderPane.alignment="CENTER">
             <padding>
                 <Insets left="12.0" right="12.0" />
             </padding>
             <children>
-                <Button fx:id="btnHome" mnemonicParsing="false" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Home" textFill="#004c99" />
+                <Button fx:id="btnHome" mnemonicParsing="false" onAction="#home" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Home" textFill="#004c99" />
 
                 <Region HBox.hgrow="ALWAYS" />
 
-                <Button fx:id="btnBack" mnemonicParsing="false" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Back" textFill="#004c99" />
+                <Button fx:id="btnBack" mnemonicParsing="false" onAction="#back" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Back" textFill="#004c99" />
             </children>
         </HBox>
     </top>
@@ -34,9 +34,9 @@
                 <Label text="Purchase record:" textFill="#2B4C94">
                     <style>-fx-font-size: 20px; -fx-font-weight: bold;</style>
                 </Label>
-            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listProduct" prefHeight="200.0" prefWidth="200.0" />
 
-                <Button fx:id="btnRefund" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Refund" />
+                <Button fx:id="btnRefund" mnemonicParsing="false" onAction="#refound" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Refund" />
             </children>
         </VBox>
     </center>

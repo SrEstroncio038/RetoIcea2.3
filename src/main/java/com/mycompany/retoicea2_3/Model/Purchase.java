@@ -6,12 +6,12 @@ import org.bson.types.ObjectId;
 
 public class Purchase {
 
-    private ObjectId orderId;                  
-    private LocalDate orderDate;              
-    private LocalDate deliveryDate;            
-    private double totalPrice;                 
-    private Addres deliveryAddress;            
-    private ArrayList<Product> boughtProducts; 
+    private ObjectId orderId;
+    private LocalDate orderDate;
+    private LocalDate deliveryDate;
+    private double totalPrice;
+    private Addres deliveryAddress;
+    private ArrayList<Product> boughtProducts;
 
     public ObjectId getOrderId() {
         return orderId;
@@ -75,6 +75,6 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return "Purchase{" + "orderId=" + orderId + ", orderDate=" + orderDate + ", deliveryDate=" + deliveryDate + ", totalPrice=" + totalPrice + ", deliveryAddress=" + deliveryAddress + ", boughtProducts=" + boughtProducts + '}';
+        return orderDate + " - " + boughtProducts.size() + " productos - " + totalPrice + " €";
     }
 }

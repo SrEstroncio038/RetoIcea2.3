@@ -32,7 +32,7 @@
          </padding>
          <children>
 
-            <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Workers" textFill="#2B4C94" />
+            <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Worker" textFill="#2B4C94" />
 
             <GridPane hgap="12.0" maxWidth="Infinity" VBox.vgrow="ALWAYS">
                <columnConstraints>

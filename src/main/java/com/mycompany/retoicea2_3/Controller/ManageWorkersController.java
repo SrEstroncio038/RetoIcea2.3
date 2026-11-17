@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 /**
@@ -27,7 +28,9 @@ public class ManageWorkersController implements Initializable {
     @FXML
     private Button btnModify;
     @FXML
-    private ListView<String> workerList;
+    private Label selectionLabel;
+    @FXML
+    private ListView<String> workers;
     
     public static Worker selectedWorker;
     
@@ -39,10 +42,24 @@ public class ManageWorkersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         selectedWorker=null;
-        ObservableList<String> workers = workerController.showAllWorkers();
-    
-        workerList.setItems(workers);
+        ObservableList<String> trabajadores = workerController.showAllWorkers();
+        workers.setItems(trabajadores);
     }  
+    
+    @FXML
+    public void modify() throws IOException {
+    String selectedText = workers.getSelectionModel().getSelectedItem();
+    if (selectedText != null) {
+        String[] parts = selectedText.split(" ");
+        String userId = parts[parts.length - 1];
+        selectedWorker = workerController.showOneWorker(userId);
+        if (selectedWorker != null) {
+            App.setRoot("AddWorker");
+        }
+    } else {
+        selectionLabel.setText("First select a worker");
+    }
+}
     
     @FXML
     public void home() throws IOException {
@@ -51,12 +68,12 @@ public class ManageWorkersController implements Initializable {
     
     @FXML
     public void singUp() throws IOException {
-        App.setRoot("Login");
+        App.setRoot("AddWorker");
     }
     
     @FXML
     public void remove() throws IOException {
-        App.setRoot("Login");
+        //popup
     }
     
     @FXML

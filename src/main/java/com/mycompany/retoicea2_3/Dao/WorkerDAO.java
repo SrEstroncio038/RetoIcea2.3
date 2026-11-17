@@ -11,4 +11,6 @@ public interface WorkerDAO {
     public ObservableList<String> showAllWorkers();
     
     public Worker showOneWorker(String userId);
+    
+    public void deleteWorker(String userId);
 }

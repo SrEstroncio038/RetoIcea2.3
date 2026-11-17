@@ -16,6 +16,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
 public class ImplementationWorkerBD implements WorkerDAO{
     
@@ -24,7 +25,7 @@ public class ImplementationWorkerBD implements WorkerDAO{
         MongoCollection<Document> resultados=DBConection.getInstancia().getColeccion("users");
         ObservableList<String> items=FXCollections.observableArrayList();
         for (Document doc: resultados.find(Filters.eq("userType", "Worker"))){
-            items.add(doc.getString("name")+" "+doc.getString("surname")+" "+doc.getString("userId"));
+            items.add(doc.getString("name")+" "+doc.getString("surname")+" --> "+doc.getObjectId("userId"));
         }
         return items;
     }
@@ -32,7 +33,7 @@ public class ImplementationWorkerBD implements WorkerDAO{
     @Override
     public Worker showOneWorker(String userId){
         MongoCollection<Document> resultados=DBConection.getInstancia().getColeccion("users");
-        Document trabajadorDoc = resultados.find(Filters.eq("userId", userId)).first();
+        Document trabajadorDoc = resultados.find(Filters.eq("userId", new ObjectId(userId))).first();
         if (trabajadorDoc == null) {
             return null;
         }
@@ -71,28 +72,11 @@ public class ImplementationWorkerBD implements WorkerDAO{
         return w;
     }
     
-    private Worker documentToWorker(Document doc){
-        Worker worker=new Worker();
-        try{
-            worker.setId(doc.getInteger("id", 0));
-            worker.setSeniority(doc.getInteger("seniority", 0));
-            String departmentString=doc.getString("department");
-            if(departmentString==null){
-                worker.setDepartment(Department.valueOf(departmentString));
-            }
-            worker.setUser(doc.getString("user"));
-            worker.setName(doc.getString("name"));
-            worker.setSurname(doc.getString("surname"));
-            worker.setBirthPlace(doc.getString("birthPlace"));
-            
-        }catch(Exception e) {
-            System.out.println("Error obtaining workers: " + e.getMessage());
-            worker=null;
-        }
-        return worker;
+    @Override
+    public void deleteWorker(String userId){
+        MongoCollection<Document> resultados = DBConection.getInstancia().getColeccion("users");
+        resultados.deleteOne(Filters.eq("userId", new ObjectId(userId)));
     }
-    
-    
     
             
 }

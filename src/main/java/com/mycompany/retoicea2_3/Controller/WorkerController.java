@@ -19,4 +19,8 @@ public class WorkerController {
     public Worker showOneWorker(String userId){
         return dao.showOneWorker(userId);
     }
+    
+    public void deleteWorker(String userId){
+        dao.deleteWorker(userId);
+    }
 }

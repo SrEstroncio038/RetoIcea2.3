@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -28,8 +29,6 @@ public class ManageWorkersController implements Initializable {
     @FXML
     private Button btnModify;
     @FXML
-    private Label selectionLabel;
-    @FXML
     private ListView<String> workers;
     
     public static Worker selectedWorker;
@@ -48,18 +47,39 @@ public class ManageWorkersController implements Initializable {
     
     @FXML
     public void modify() throws IOException {
-    String selectedText = workers.getSelectionModel().getSelectedItem();
-    if (selectedText != null) {
-        String[] parts = selectedText.split(" ");
-        String userId = parts[parts.length - 1];
-        selectedWorker = workerController.showOneWorker(userId);
-        if (selectedWorker != null) {
-            App.setRoot("AddWorker");
+        String selectedText = workers.getSelectionModel().getSelectedItem();
+        if (selectedText != null) {
+            String[] parts = selectedText.split(" ");
+            String userId = parts[parts.length - 1];
+            selectedWorker = workerController.showOneWorker(userId);
+            if (selectedWorker != null) {
+                App.setRoot("AddWorker");
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Modify Error");
+            alert.setContentText("First select a worker.");
+            alert.showAndWait();
         }
-    } else {
-        selectionLabel.setText("First select a worker");
     }
-}
+    
+    @FXML
+    public void delete() throws IOException{
+        String selectedText = workers.getSelectionModel().getSelectedItem();
+        if (selectedText != null) {
+            String[] parts = selectedText.split(" ");
+            String userId = parts[parts.length - 1]; 
+            workerController.deleteWorker(userId);
+            ObservableList<String> trabajadoresActualizados = workerController.showAllWorkers();
+            workers.setItems(trabajadoresActualizados);  
+            selectedWorker = null;
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Delete Error");
+            alert.setContentText("First select a worker.");
+            alert.showAndWait();
+        }
+    }
     
     @FXML
     public void home() throws IOException {
@@ -73,12 +93,7 @@ public class ManageWorkersController implements Initializable {
     
     @FXML
     public void remove() throws IOException {
-        //popup
-    }
-    
-    @FXML
-    public void modify() throws IOException {
-        App.setRoot("AddWorker");
+        delete();
     }
     
 }

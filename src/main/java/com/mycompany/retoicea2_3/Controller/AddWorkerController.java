@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.main.App;
@@ -14,9 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 /**
- * FXML Controller class
- *
- * @author asola
+ * Controlador para la vista de añadir de trabajadores.
+ * Gestiona la interfaz y acciones asociadas al registro de nuevos empleados en la aplicación.
+ * 
+ * @author G.2
  */
 public class AddWorkerController implements Initializable {
 
@@ -27,16 +24,11 @@ public class AddWorkerController implements Initializable {
     @FXML
     private Button btnSave;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
     @FXML
     public void save() throws IOException{
         App.setRoot("ManageWorkers");
-    }
-    
-    
+    }  
 }

@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +27,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import utils.LoggerClass;
 
 /**
  * FXML Controller class
@@ -32,7 +35,7 @@ import javafx.stage.Stage;
  * @author asola
  */
 public class SignInControlles implements Initializable {
-
+    private static final Logger LOGGER = LoggerClass.getLogger();
     @FXML
     private Button home;
     @FXML
@@ -127,11 +130,13 @@ public class SignInControlles implements Initializable {
             Client c = new Client(name.getText(), sname.getText(), city.getText(), passwrd.getText(), user.getText(), birthday.getValue(), a);
             boolean exists = userController.clientRegistration(c);
             if (exists) {
+                LOGGER.log(Level.WARNING, "Registro fallido. Usuario existente: {0}", user.getText());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("SignIn Error");
                 alert.setContentText("Username already exists.");
                 alert.showAndWait();
             } else {
+                LOGGER.log(Level.INFO, "Nuevo cliente registrado: {0}", c.getUser());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("SignIn Complited");
                 alert.setContentText("SignIn successfully complited.");

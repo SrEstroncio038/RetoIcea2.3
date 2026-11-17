@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Exceptions.ProductExistsException;
@@ -21,9 +17,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 /**
- * FXML Controller class
- *
- * @author asola
+ * Controlador para la vista de añadir de productos.
+ * Gestiona la interacción del usuario para registrar nuevos productos en el sistema,
+ * recopilando sus características y validando su existencia previa.
+ * 
+ * @author G.2
  */
 public class AddProductController implements Initializable {
 
@@ -54,9 +52,6 @@ public class AddProductController implements Initializable {
 
     ProductController productController = new ProductController();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         chkPreOwned.setVisible(false);

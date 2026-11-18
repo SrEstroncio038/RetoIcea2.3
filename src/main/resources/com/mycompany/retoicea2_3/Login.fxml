@@ -19,7 +19,7 @@
             <Insets left="14.0" right="14.0" />
          </padding>
          <children>
-            <Button fx:id="home" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Home" textFill="#004c99" />
+            <Button fx:id="home" mnemonicParsing="false" onAction="#goHome" style="-fx-background-color: D4E1F5;" text="Home" textFill="#004c99" />
          </children>
       </HBox>
    </top>
@@ -46,7 +46,7 @@
                </children>
             </GridPane>
 
-            <Button fx:id="btnContinue" mnemonicParsing="false" style="-fx-background-color: #004C99;" text="Continue" textFill="#cce5ff" />
+            <Button fx:id="btnContinue" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #004C99;" text="Continue" textFill="#cce5ff" />
          </children>
       </VBox>
    </center>

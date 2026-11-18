@@ -1,7 +1,5 @@
 package com.mycompany.retoicea2_3.Controller;
 
-import com.mycompany.retoicea2_3.Dao.ImplementationUserBD;
-import com.mycompany.retoicea2_3.Dao.UserDAO;
 import com.mycompany.retoicea2_3.Model.Usuario;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
@@ -67,6 +65,11 @@ public class LoginController implements Initializable {
             MainViewController.logedUser = usuario;
             App.setRoot("MainView");
         }
+    }
+
+    @FXML
+    public void goHome() throws IOException {
+        App.setRoot("MainView");
     }
 
 }

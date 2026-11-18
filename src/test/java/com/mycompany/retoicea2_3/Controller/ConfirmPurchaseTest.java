@@ -45,8 +45,8 @@ public class ConfirmPurchaseTest extends ApplicationTest {
     public void cargarCarrito() {
         ObservableList<Product> products = lookup("#lvCart").queryAs(ListView.class).getItems();
         String[] productosEsperados = {
-            "Silla de roble - 79,99 € (nuevo)",
-            "Mesa de comedor - 249,50 € (nuevo)"
+                "Silla de roble - 79,99 € (nuevo)",
+                "Mesa de comedor - 249,50 € (nuevo)"
         };
         for (String esperado : productosEsperados) {
             boolean encontrado = false;

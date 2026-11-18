@@ -47,14 +47,16 @@ public class ViewProductController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        txtName.setText(MainViewController.selectedProduct.getNombre());
-        txtPrice.setText(String.valueOf(MainViewController.selectedProduct.getPrecio()));
-        txtStock.setText(String.valueOf(MainViewController.selectedProduct.getStock()));
-        txtMaterial.setText(MainViewController.selectedProduct.getCharacteristics().getMaterial());
-        txtColour.setText(MainViewController.selectedProduct.getCharacteristics().getColor());
-        txtWeight.setText(String.valueOf(MainViewController.selectedProduct.getCharacteristics().getWeight()));
-        txtHigh.setText(String.valueOf(MainViewController.selectedProduct.getCharacteristics().getHeight()));
-        txtWidth.setText(String.valueOf(MainViewController.selectedProduct.getCharacteristics().getWidth()));
+        if (MainViewController.selectedProduct != null) {
+            txtName.setText(MainViewController.selectedProduct.getNombre());
+            txtPrice.setText(String.valueOf(MainViewController.selectedProduct.getPrecio()));
+            txtStock.setText(String.valueOf(MainViewController.selectedProduct.getStock()));
+            txtMaterial.setText(MainViewController.selectedProduct.getCharacteristics().getMaterial());
+            txtColour.setText(MainViewController.selectedProduct.getCharacteristics().getColor());
+            txtWeight.setText(String.valueOf(MainViewController.selectedProduct.getCharacteristics().getWeight()));
+            txtHigh.setText(String.valueOf(MainViewController.selectedProduct.getCharacteristics().getHeight()));
+            txtWidth.setText(String.valueOf(MainViewController.selectedProduct.getCharacteristics().getWidth()));
+        }
         txtName.setEditable(false);
         txtPrice.setEditable(false);
         txtStock.setEditable(false);
@@ -76,80 +78,15 @@ public class ViewProductController implements Initializable {
 
     @FXML
     private void addToCart(ActionEvent event) throws IOException {
-        boolean correct = true;
+        Characteristics c = new Characteristics(txtMaterial.getText().trim(), txtColour.getText().trim(),
+                Float.parseFloat(txtWeight.getText().trim().replace(',', '.')),
+                Float.parseFloat(txtHigh.getText().trim().replace(',', '.')),
+                Float.parseFloat(txtWidth.getText().trim().replace(',', '.')));
+        Product p = new Product(txtName.getText().trim(), Float.parseFloat(txtPrice.getText().trim().replace(',', '.')),
+                Integer.parseInt(txtStock.getText().trim()), false, c);
+        ((Client) MainViewController.logedUser).setCart(p);
+        MainViewController.selectedProduct = null;
+        App.setRoot("MainView");
 
-        if (correct && !txtName.getText().trim().matches("^[\\p{L}0-9][\\p{L}0-9 .,'\\-]{1,49}$")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Add Product Error");
-            alert.setContentText("Invalid name.");
-            alert.showAndWait();
-            correct = false;
-        }
-        if (correct && (!txtPrice.getText().trim().matches("^\\d{1,7}([.,]\\d{1,2})?$")
-                || Float.parseFloat(txtPrice.getText().trim().replace(',', '.')) <= 0)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Add Product Error");
-            alert.setContentText("Invalid price.");
-            alert.showAndWait();
-            correct = false;
-        }
-        if (correct && !txtStock.getText().trim().matches("^\\d{1,6}$")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Add Product Error");
-            alert.setContentText("Invalid stock.");
-            alert.showAndWait();
-            correct = false;
-        }
-        if (correct && !txtMaterial.getText().trim().matches("^\\p{L}[\\p{L} \\-]{1,29}$")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Add Product Error");
-            alert.setContentText("Invalid material.");
-            alert.showAndWait();
-            correct = false;
-        }
-        if (correct && !txtColour.getText().trim().matches("^\\p{L}[\\p{L} \\-]{1,19}$")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Add Product Error");
-            alert.setContentText("Invalid colour.");
-            alert.showAndWait();
-            correct = false;
-        }
-        if (correct && (!txtWeight.getText().trim().matches("^\\d{1,5}([.,]\\d{1,2})?$")
-                || Float.parseFloat(txtWeight.getText().trim().replace(',', '.')) <= 0)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Add Product Error");
-            alert.setContentText("Invalid weight.");
-            alert.showAndWait();
-            correct = false;
-        }
-        if (correct && (!txtHigh.getText().trim().matches("^\\d{1,5}([.,]\\d{1,2})?$")
-                || Float.parseFloat(txtHigh.getText().trim().replace(',', '.')) <= 0)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Add Product Error");
-            alert.setContentText("Invalid height.");
-            alert.showAndWait();
-            correct = false;
-        }
-        if (correct && (!txtWidth.getText().trim().matches("^\\d{1,5}([.,]\\d{1,2})?$")
-                || Float.parseFloat(txtWidth.getText().trim().replace(',', '.')) <= 0)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Add Product Error");
-            alert.setContentText("Invalid width.");
-            alert.showAndWait();
-            correct = false;
-        }
-
-        if (correct) {
-            Characteristics c = new Characteristics(txtMaterial.getText().trim(), txtColour.getText().trim(),
-                    Float.parseFloat(txtWeight.getText().trim().replace(',', '.')),
-                    Float.parseFloat(txtHigh.getText().trim().replace(',', '.')),
-                    Float.parseFloat(txtWidth.getText().trim().replace(',', '.')));
-            Product p = new Product(txtName.getText().trim(),
-                    Float.parseFloat(txtPrice.getText().trim().replace(',', '.')),
-                    Integer.parseInt(txtStock.getText().trim()), false, c);
-            ((Client) MainViewController.logedUser).setCart(p);
-            MainViewController.selectedProduct = null;
-            App.setRoot("MainView");
-        }
     }
 }

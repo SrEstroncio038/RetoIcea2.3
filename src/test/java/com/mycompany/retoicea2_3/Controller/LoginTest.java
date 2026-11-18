@@ -51,10 +51,10 @@ public class LoginTest extends ApplicationTest {
 
     @Test
     public void loginCorrecto() {
-        clickOn("#txtUser").write("anaperez");
-        clickOn("#txtPassword").write("Ana12345!");
+        clickOn("#txtUser").write("admin_elena");
+        clickOn("#txtPassword").write("AdminPassword987");
         clickOn("#btnContinue");
-        assertEquals("anaperez", MainViewController.logedUser.getUser());
+        assertEquals("admin_elena", MainViewController.logedUser.getUser());
         verifyThat("#products", isVisible());
     }
 

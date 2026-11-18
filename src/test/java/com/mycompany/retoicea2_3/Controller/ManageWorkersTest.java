@@ -29,9 +29,9 @@ public class ManageWorkersTest extends ApplicationTest {
     public void cargarTrabajadores() {
         ObservableList<String> trabajadores = lookup("#workers").queryAs(ListView.class).getItems();
         String[] esperados = {
-            "Ana Sola --> 507f1f77bcf86cd799439012",
-            "David Gómez --> 507f1f77bcf86cd799439015",
-            "Sofía Blanco --> 507f1f77bcf86cd799439016"
+                "Ana Sola --> 507f1f77bcf86cd799439012",
+                "David Gómez --> 507f1f77bcf86cd799439015",
+                "Sofía Blanco --> 507f1f77bcf86cd799439016"
         };
         for (String esperado : esperados) {
             assertTrue(trabajadores.contains(esperado));
@@ -66,12 +66,15 @@ public class ManageWorkersTest extends ApplicationTest {
 
     @Test
     public void borrarTrabajador() {
-        clickOn("Jorge Navarro --> 507f1f77bcf86cd799439017");
+        ListView<String> lvWorkers = lookup("#workers").queryAs(ListView.class);
+        String ultimoTrabajador = lvWorkers.getItems().get(lvWorkers.getItems().size() - 1);
+
+        clickOn(ultimoTrabajador);
         clickOn("#btnToRemove");
         assertNull(ManageWorkersController.selectedWorker);
 
-        ObservableList<String> trabajadores = lookup("#workers").queryAs(ListView.class).getItems();
-        assertFalse(trabajadores.contains("Jorge Navarro --> 507f1f77bcf86cd799439017"));
+        ObservableList<String> trabajadoresActualizados = lookup("#workers").queryAs(ListView.class).getItems();
+        assertFalse(trabajadoresActualizados.contains(ultimoTrabajador));
     }
 
     @Test

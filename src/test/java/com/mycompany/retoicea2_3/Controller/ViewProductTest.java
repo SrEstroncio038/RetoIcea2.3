@@ -28,15 +28,10 @@ public class ViewProductTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws IOException {
-        cliente = new Client("Juan", "Perez", "Bilbao", "Pass1234!", "juanp",
-                LocalDate.of(2000, 1, 1), new Addres(12, "Calle Mayor", 3, 'A'));
-        MainViewController.logedUser = cliente;
-
-        MainViewController.selectedProduct = new Product(
-                new ObjectId(), "Estanteria", 89.99f, 10, false,
-                new Characteristics("Pino", "Blanco", 12.0f, 180.0f, 80.0f));
-
         new App().start(stage);
+        cliente = new Client("Juan", "Perez", "Bilbao", "Pass1234!", "juanp", LocalDate.of(2000, 1, 1),new Addres(12, "Calle Mayor", 3, 'A'));
+        MainViewController.logedUser = cliente;
+        MainViewController.selectedProduct = new Product(new ObjectId(), "Estanteria", 89.99f, 10, false,new Characteristics("Pino", "Blanco", 12.0f, 180.0f, 80.0f));
         App.setRoot("ViewProduct");
     }
 
@@ -50,19 +45,10 @@ public class ViewProductTest extends ApplicationTest {
         assertEquals("12.0", lookup("#txtWeight").queryAs(TextField.class).getText());
         assertEquals("180.0", lookup("#txtHigh").queryAs(TextField.class).getText());
         assertEquals("80.0", lookup("#txtWidth").queryAs(TextField.class).getText());
-
-        assertFalse(lookup("#txtName").queryAs(TextField.class).isEditable());
-        assertFalse(lookup("#txtPrice").queryAs(TextField.class).isEditable());
-        assertFalse(lookup("#txtStock").queryAs(TextField.class).isEditable());
-        assertFalse(lookup("#txtMaterial").queryAs(TextField.class).isEditable());
-        assertFalse(lookup("#txtColour").queryAs(TextField.class).isEditable());
-        assertFalse(lookup("#txtWeight").queryAs(TextField.class).isEditable());
-        assertFalse(lookup("#txtHigh").queryAs(TextField.class).isEditable());
-        assertFalse(lookup("#txtWidth").queryAs(TextField.class).isEditable());
     }
 
     @Test
-    public void CamposBloqueados() {
+    public void camposBloqueados() {
         assertFalse(lookup("#txtName").queryAs(TextField.class).isEditable());
         assertFalse(lookup("#txtPrice").queryAs(TextField.class).isEditable());
         assertFalse(lookup("#txtStock").queryAs(TextField.class).isEditable());

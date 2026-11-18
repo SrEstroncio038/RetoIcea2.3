@@ -52,24 +52,14 @@ public class AddProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        chkPreOwned.setVisible(false);
 
-        txtName.setText(MainViewController.selectedProduct.getNombre());
-        txtPrice.setText(String.valueOf(MainViewController.selectedProduct.getPrecio()));
-        txtStock.setText(String.valueOf(MainViewController.selectedProduct.getStock()));
-        txtMaterial.setText(MainViewController.selectedProduct.getCharacteristics().getMaterial());
-        txtColour.setText(MainViewController.selectedProduct.getCharacteristics().getColor());
-        txtWeight.setText(String.valueOf(MainViewController.selectedProduct.getCharacteristics().getWeight()) + "kg");
-        txtHigh.setText(String.valueOf(MainViewController.selectedProduct.getCharacteristics().getHeight()) + "cm");
-        txtWidth.setText(String.valueOf(MainViewController.selectedProduct.getCharacteristics().getWidth()) + "cm");
-        txtName.setEditable(false);
-        txtPrice.setEditable(false);
-        txtStock.setEditable(false);
-        txtMaterial.setEditable(false);
-        txtColour.setEditable(false);
-        txtWeight.setEditable(false);
-        txtHigh.setEditable(false);
-        txtWidth.setEditable(false);
+        chkPreOwned.setVisible(false);
+        if (MainViewController.logedUser instanceof Client) {
+            chkPreOwned.setSelected(true);
+        } else {
+            chkPreOwned.setSelected(false);
+        }
+
     }
 
     @FXML

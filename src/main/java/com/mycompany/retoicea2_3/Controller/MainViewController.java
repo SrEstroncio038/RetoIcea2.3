@@ -50,7 +50,7 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         selectedProduct = null;
-        ObservableList<String> productos = productController.showAllProductos();
+        ObservableList<String> productos = productController.showAllProductNames();
         products.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 selectedProduct = productController.showOneProduct(products.getSelectionModel().getSelectedItem().split(", precio: ")[0].replace("Producto:", ""));

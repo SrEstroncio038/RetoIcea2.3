@@ -52,22 +52,40 @@ public class AddProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        chkPreOwned.setVisible(false);
         if (MainViewController.logedUser instanceof Client) {
             chkPreOwned.setSelected(true);
         } else {
             chkPreOwned.setSelected(false);
+        }
+        
+        if (ManageProductController.selectedProductToModify != null) {
+            Product p = ManageProductController.selectedProductToModify;
+            txtName.setText(p.getNombre());
+            txtName.setDisable(true);
+            txtPrice.setText(String.valueOf(p.getPrecio()));
+            txtStock.setText(String.valueOf(p.getStock()));
+            chkPreOwned.setSelected(p.isSeminuevo());
+
+            if (p.getCharacteristics() != null) {
+                Characteristics c = p.getCharacteristics();
+                txtMaterial.setText(c.getMaterial());
+                txtColour.setText(c.getColor());
+                txtWeight.setText(String.valueOf(c.getWeight()));
+                txtHigh.setText(String.valueOf(c.getHeight()));
+                txtWidth.setText(String.valueOf(c.getWidth()));
+            }
         }
 
     }
 
     @FXML
     private void home(ActionEvent event) throws IOException {
+        ManageProductController.selectedProductToModify = null;
         App.setRoot("MainView");
     }
 
     private void back(ActionEvent event) throws IOException {
+        ManageProductController.selectedProductToModify = null;
         App.setRoot("MainView");
     }
 
@@ -149,12 +167,28 @@ public class AddProductController implements Initializable {
                     Integer.parseInt(txtStock.getText().trim()),
                     chkPreOwned.isSelected(), c);
             try {
-                productController.addProduct(p);
+                if (ManageProductController.selectedProductToModify == null) {
+                    productController.addProduct(p);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setContentText("Product added successfully.");
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setContentText("Product updated successfully.");
+                    alert.showAndWait();
+                }
+
+                ManageProductController.selectedProductToModify = null;
+                App.setRoot("ManageProduct");
             } catch (ProductExistsException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Add Product Error");
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
+            }catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

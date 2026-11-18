@@ -46,8 +46,8 @@ public class CreateOfferController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> productos = productController.showAllProductos();
-        cmbProduct.setItems(productos);
+        ObservableList<String> nombresProductos = productController.showAllProductNames();
+        cmbProduct.setItems(nombresProductos);
     }
 
     @FXML

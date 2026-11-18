@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.mycompany.retoicea2_3.Dao;
 
 import com.mycompany.retoicea2_3.Model.*;
@@ -16,39 +20,41 @@ import javafx.collections.ObservableList;
 import org.bson.types.ObjectId;
 
 /**
-Implementación de la interfaz ProductDAO para gestionar los productos
-mediante una base de datos MongoDB.
-Permite consultar todos los productos, buscar un producto por su nombre
-y añadir nuevos productos a la colección products.
-
-@author G.2
-*/
+ *
+ * @author asola
+ */
 public class ImplementationProductBD implements ProductDAO {
 
-    /**
-Obtiene todos los productos almacenados en la base de datos.
-Recupera sus nombres, precios y stock y los añade a una lista observable.
-
-@return lista observable con la información de todos los productos.
-*/
     @Override
-    public ObservableList<String> showAllProductos() {
+    public ObservableList<Product> showAllProductos() {
         MongoCollection<Document> resultados = DBConection.getInstancia().getColeccion("products");
-        ObservableList<String> items = FXCollections.observableArrayList();
+        ObservableList<Product> items = FXCollections.observableArrayList();
+        
         for (Document doc : resultados.find()) {
-            items.add("Producto:" + doc.getString("productName") + ", precio: " + doc.getDouble("price") + "€" + " | Stock restante: " + doc.getInteger("stock") + " precio: " + doc.getDouble("price"));
+            Characteristics c = new Characteristics();
+            Document cahr = doc.get("characteristics", Document.class);
+            
+            if (cahr != null) {
+                c.setColor(cahr.getString("color"));
+                c.setMaterial(cahr.getString("material"));
+                c.setHeight(cahr.get("height", Number.class).floatValue());
+                c.setWeight(cahr.get("weight", Number.class).floatValue());
+                c.setWidth(cahr.get("width", Number.class).floatValue());
+            }
+            
+            Product p = new Product(
+                doc.getObjectId("productId"),
+                doc.getString("productName"),
+                doc.get("price", Number.class).floatValue(),
+                doc.getInteger("stock"),
+                doc.getBoolean("new"),
+                c
+            );
+            items.add(p);
         }
         return items;
     }
 
-    /**
-Busca un producto en la base de datos mediante su nombre.
-Recupera también sus características, como el material, color,
-altura, peso y anchura.
-
-@param name nombre del producto que se desea buscar.
-@return producto encontrado con sus características o null si no existe.
-*/
     @Override
     public Product showOneProduct(String name) {
         Characteristics c = new Characteristics();
@@ -70,14 +76,6 @@ altura, peso y anchura.
         return p;
     }
 
-    /**
-Añade un nuevo producto a la colección products de MongoDB.
-Antes de insertarlo, comprueba si ya existe otro producto con el mismo nombre.
-Si existe, lanza una excepción para evitar duplicados.
-
-@param p producto que se desea añadir a la base de datos.
-@throws ProductExistsException si el producto ya existe.
-*/
     @Override
     public void addProduct(Product p) throws ProductExistsException {
         if (showOneProduct(p.getNombre()) != null) {
@@ -98,6 +96,12 @@ Si existe, lanza una excepción para evitar duplicados.
 
         MongoCollection<Document> productos = DBConection.getInstancia().getColeccion("products");
         productos.insertOne(product);
+    }
+    
+    @Override
+    public void removeProduct(String productName) {
+        MongoCollection<Document> collection = DBConection.getInstancia().getColeccion("products");
+        collection.deleteOne(Filters.eq("productName", productName));
     }
 
 }

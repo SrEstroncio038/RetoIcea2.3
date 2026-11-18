@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
 package com.mycompany.retoicea2_3.Dao;
 
 import com.mycompany.retoicea2_3.Exceptions.ProductExistsException;
@@ -5,14 +9,12 @@ import com.mycompany.retoicea2_3.Model.Product;
 import javafx.collections.ObservableList;
 
 /**
-Interfaz DAO encargada de definir las operaciones de consulta y gestión de productos.
-
-@author G.2
-*/
+ *
+ * @author asola
+ */
 public interface ProductDAO {
-    public ObservableList<String> showAllProductos(); 
-    
-    public Product showOneProduct(String name);
-    
-    public void addProduct(Product p) throws ProductExistsException;
+    ObservableList<Product> showAllProductos();
+    Product showOneProduct(String name);
+    void addProduct(Product p) throws ProductExistsException;
+    void removeProduct(String productName);
 }

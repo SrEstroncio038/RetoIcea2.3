@@ -20,9 +20,8 @@
                 <Insets left="12.0" right="12.0" />
             </padding>
             <children>
-                <Button fx:id="btnHome" mnemonicParsing="false" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Home" textFill="#004c99" />
+                <Button fx:id="btnHome" mnemonicParsing="false" onAction="#home" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Home" textFill="#004c99" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="btnBack" mnemonicParsing="false" style="-fx-background-color: D4E1F5; -fx-font-size: 14px;" text="Back" textFill="#004c99" />
             </children>
         </HBox>
     </top>
@@ -75,12 +74,10 @@
                     <children>
                         <HBox alignment="CENTER" spacing="10.0">
                             <children>
-                                <Label text="Pre-owned:" />
                                 <CheckBox fx:id="chkPreOwned" mnemonicParsing="false" />
                             </children>
                         </HBox>
-                        <Button fx:id="btnSave" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Save" />
-                  <Button fx:id="btnSave1" layoutX="240.0" layoutY="10.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Save" />
+                  <Button fx:id="btnSave" layoutX="240.0" layoutY="10.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: #2B4C94; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" text="Save" />
                     </children>
                 </HBox>
             </children>

@@ -17,7 +17,7 @@
             <Insets left="14.0" right="14.0" />
          </padding>
          <children>
-            <Button fx:id="profile" mnemonicParsing="false" style="-fx-background-color: D4E1F5;" text="Boton" textFill="#004c99" />
+            <Button fx:id="profile" mnemonicParsing="false" onAction="#userProfile" style="-fx-background-color: D4E1F5;" text="Boton" textFill="#004c99" />
             <Button fx:id="mworker" mnemonicParsing="false" onAction="#manageWorkers" style="-fx-background-color: D4E1F5;" text="Manager Workers" textFill="#004c99" />
             <Button fx:id="mProduct" mnemonicParsing="false" onAction="#manageProduct" style="-fx-background-color: D4E1F5;" text="Manager Products" textFill="#004c99" />
             <Region HBox.hgrow="ALWAYS" />

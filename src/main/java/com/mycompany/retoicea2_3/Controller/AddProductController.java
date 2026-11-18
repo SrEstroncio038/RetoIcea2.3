@@ -17,10 +17,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 /**
- * Controlador para la vista de añadir de productos.
- * Gestiona la interacción del usuario para registrar nuevos productos en el sistema,
- * recopilando sus características y validando su existencia previa.
- * 
+ * Controlador para la vista de añadir de productos. Gestiona la interacción del
+ * usuario para registrar nuevos productos en el sistema, recopilando sus
+ * características y validando su existencia previa.
+ *
  * @author G.2
  */
 public class AddProductController implements Initializable {
@@ -74,13 +74,89 @@ public class AddProductController implements Initializable {
 
     @FXML
     private void addProduct() {
-        Characteristics c = new Characteristics(txtMaterial.getText(), txtColour.getText(), Float.valueOf(txtWeight.getText()), Float.valueOf(txtHigh.getText()), Float.valueOf(txtWidth.getText()));
-        Product p = new Product(txtName.getText(), Float.parseFloat(txtPrice.getText()), Integer.parseInt(txtStock.getText()), chkPreOwned.isSelected(), c);
-        try {
-            productController.addProduct(p);
-        } catch (ProductExistsException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+        boolean correct = true;
+
+        if (correct && !txtName.getText().trim().matches("^[\\p{L}0-9][\\p{L}0-9 .,'\\-]{1,49}$")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Add Product Error");
+            alert.setContentText("Invalid name.");
             alert.showAndWait();
+            correct = false;
+        }
+        if (correct && (!txtPrice.getText().trim().matches("^\\d{1,7}([.,]\\d{1,2})?$")
+                || Float.parseFloat(txtPrice.getText().trim().replace(',', '.')) <= 0)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Add Product Error");
+            alert.setContentText("Invalid price.");
+            alert.showAndWait();
+            correct = false;
+        }
+        if (correct && !txtStock.getText().trim().matches("^\\d{1,6}$")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Add Product Error");
+            alert.setContentText("Invalid stock.");
+            alert.showAndWait();
+            correct = false;
+        }
+        if (correct && !txtMaterial.getText().trim().matches("^\\p{L}[\\p{L} \\-]{1,29}$")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Add Product Error");
+            alert.setContentText("Invalid material.");
+            alert.showAndWait();
+            correct = false;
+        }
+        if (correct && !txtColour.getText().trim().matches("^\\p{L}[\\p{L} \\-]{1,19}$")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Add Product Error");
+            alert.setContentText("Invalid colour.");
+            alert.showAndWait();
+            correct = false;
+        }
+        if (correct && (!txtWeight.getText().trim().matches("^\\d{1,5}([.,]\\d{1,2})?$")
+                || Float.parseFloat(txtWeight.getText().trim().replace(',', '.')) <= 0)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Add Product Error");
+            alert.setContentText("Invalid weight.");
+            alert.showAndWait();
+            correct = false;
+        }
+        if (correct && (!txtHigh.getText().trim().matches("^\\d{1,5}([.,]\\d{1,2})?$")
+                || Float.parseFloat(txtHigh.getText().trim().replace(',', '.')) <= 0)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Add Product Error");
+            alert.setContentText("Invalid height.");
+            alert.showAndWait();
+            correct = false;
+        }
+        if (correct && (!txtWidth.getText().trim().matches("^\\d{1,5}([.,]\\d{1,2})?$")
+                || Float.parseFloat(txtWidth.getText().trim().replace(',', '.')) <= 0)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Add Product Error");
+            alert.setContentText("Invalid width.");
+            alert.showAndWait();
+            correct = false;
+        }
+
+        if (correct) {
+            Characteristics c = new Characteristics(
+                    txtMaterial.getText().trim(),
+                    txtColour.getText().trim(),
+                    Float.parseFloat(txtWeight.getText().trim().replace(',', '.')),
+                    Float.parseFloat(txtHigh.getText().trim().replace(',', '.')),
+                    Float.parseFloat(txtWidth.getText().trim().replace(',', '.')));
+            Product p = new Product(
+                    txtName.getText().trim(),
+                    Float.parseFloat(txtPrice.getText().trim().replace(',', '.')),
+                    Integer.parseInt(txtStock.getText().trim()),
+                    chkPreOwned.isSelected(), c);
+            try {
+                productController.addProduct(p);
+            } catch (ProductExistsException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Add Product Error");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 

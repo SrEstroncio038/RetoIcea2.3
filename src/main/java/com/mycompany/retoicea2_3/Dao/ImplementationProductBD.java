@@ -17,6 +17,7 @@ import com.mycompany.retoicea2_3.Model.Product;
 import org.bson.Document;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -39,6 +40,9 @@ public class ImplementationProductBD implements ProductDAO {
         Characteristics c = new Characteristics();
         MongoCollection<Document> resultados = DBConection.getInstancia().getColeccion("products");
         Document producto = resultados.find(Filters.eq("productName", name)).first();
+        if (producto == null) {
+            return null;
+        }
         Document cahr = producto.get("characteristics", Document.class);
         Product p = null;
         if (cahr != null) {
@@ -47,7 +51,7 @@ public class ImplementationProductBD implements ProductDAO {
             c.setHeight(cahr.get("height", Number.class).floatValue());
             c.setWeight(cahr.get("weight", Number.class).floatValue());
             c.setWidth(cahr.get("width", Number.class).floatValue());
-            p = new Product(producto.getObjectId("_id"), producto.getString("productName"), producto.get("price", Number.class).floatValue(), producto.getInteger("stock"), producto.getBoolean("new"), c);
+            p = new Product(producto.getObjectId("productId"), producto.getString("productName"), producto.get("price", Number.class).floatValue(), producto.getInteger("stock"), producto.getBoolean("new"), c);
         }
         return p;
     }
@@ -57,11 +61,14 @@ public class ImplementationProductBD implements ProductDAO {
         if (showOneProduct(p.getNombre()) != null) {
             throw new ProductExistsException("Product already exists.");
         }
-        Document product = new Document("productName", p.getNombre())
+        ObjectId productId = new ObjectId();
+        Document product = new Document("productId", productId)
+                .append("productName", p.getNombre())
                 .append("price", p.getPrecio())
                 .append("stock", p.getStock())
                 .append("new", p.isSeminuevo())
-                .append("characteristics", new Document("material", p.getCharacteristics().getMaterial())
+                .append("characteristics", new Document("characteristicId", new ObjectId())
+                        .append("material", p.getCharacteristics().getMaterial())
                         .append("color", p.getCharacteristics().getColor())
                         .append("height", p.getCharacteristics().getHeight())
                         .append("width", p.getCharacteristics().getWidth())

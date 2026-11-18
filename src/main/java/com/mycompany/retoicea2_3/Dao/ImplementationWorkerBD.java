@@ -19,43 +19,43 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
-Implementación de la interfaz WorkerDAO para gestionar los trabajadores
-mediante una base de datos MongoDB.
-Permite consultar todos los trabajadores, obtener la información
-de un trabajador concreto y eliminar trabajadores de la base de datos.
+ * Implementación de la interfaz WorkerDAO para gestionar los trabajadores
+ * mediante una base de datos MongoDB. Permite consultar todos los trabajadores,
+ * obtener la información de un trabajador concreto y eliminar trabajadores de
+ * la base de datos.
+ *
+ * @author G.2
+ */
+public class ImplementationWorkerBD implements WorkerDAO {
 
-@author G.2
-*/
-public class ImplementationWorkerBD implements WorkerDAO{
-    
     /**
-Obtiene todos los trabajadores registrados en la colección users.
-Recupera sus nombres, apellidos e identificadores y los almacena
-en una lista observable.
-
-@return lista observable con la información de los trabajadores.
-*/
+     * Obtiene todos los trabajadores registrados en la colección users.
+     * Recupera sus nombres, apellidos e identificadores y los almacena en una
+     * lista observable.
+     *
+     * @return lista observable con la información de los trabajadores.
+     */
     @Override
-    public ObservableList<String> showAllWorkers(){
-        MongoCollection<Document> resultados=DBConection.getInstancia().getColeccion("users");
-        ObservableList<String> items=FXCollections.observableArrayList();
-        for (Document doc: resultados.find(Filters.eq("userType", "Worker"))){
-            items.add(doc.getString("name")+" "+doc.getString("surname")+" --> "+doc.getObjectId("userId"));
+    public ObservableList<String> showAllWorkers() {
+        MongoCollection<Document> resultados = DBConection.getInstancia().getColeccion("users");
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for (Document doc : resultados.find(Filters.eq("userType", "Worker"))) {
+            items.add(doc.getString("name") + " " + doc.getString("surname") + " --> " + doc.getObjectId("userId"));
         }
         return items;
     }
-    
-    /**
-Busca un trabajador en la base de datos mediante su identificador.
-Recupera sus datos personales, departamento, fecha de nacimiento
-y dirección para construir un objeto Worker.
 
-@param userId identificador del trabajador que se desea consultar.
-@return objeto Worker con sus datos o null si no se encuentra.
-*/
+    /**
+     * Busca un trabajador en la base de datos mediante su identificador.
+     * Recupera sus datos personales, departamento, fecha de nacimiento y
+     * dirección para construir un objeto Worker.
+     *
+     * @param userId identificador del trabajador que se desea consultar.
+     * @return objeto Worker con sus datos o null si no se encuentra.
+     */
     @Override
-    public Worker showOneWorker(String userId){
-        MongoCollection<Document> resultados=DBConection.getInstancia().getColeccion("users");
+    public Worker showOneWorker(String userId) {
+        MongoCollection<Document> resultados = DBConection.getInstancia().getColeccion("users");
         Document trabajadorDoc = resultados.find(Filters.eq("userId", new ObjectId(userId))).first();
         if (trabajadorDoc == null) {
             return null;
@@ -96,13 +96,13 @@ y dirección para construir un objeto Worker.
         w.setSeniority(seniority);
         return w;
     }
-    
+
     @Override
-    public void deleteWorker(String userId){
+    public void deleteWorker(String userId) {
         MongoCollection<Document> resultados = DBConection.getInstancia().getColeccion("users");
         resultados.deleteOne(Filters.eq("userId", new ObjectId(userId)));
     }
-    
+
     @Override
     public void updateWorker(Worker worker, String userId) {
         MongoCollection<Document> collection = DBConection.getInstancia().getColeccion("users");
@@ -126,38 +126,36 @@ y dirección para construir un objeto Worker.
                 .append("birthdate", birthDateDoc)
                 .append("address", addressDoc);
         collection.updateOne(
-                Filters.eq("userId", new ObjectId(userId)), 
+                Filters.eq("userId", new ObjectId(userId)),
                 new Document("$set", workerDoc)
         );
     }
-    
+
     @Override
     public void insertWorker(Worker worker) {
-    MongoCollection<Document> collection = DBConection.getInstancia().getColeccion("users");
-    
-    java.util.Date birthDateDoc = null;
-    if (worker.getBirthDate() != null) {
-        birthDateDoc = java.util.Date.from(worker.getBirthDate().atStartOfDay(java.time.ZoneId.systemDefault()).toInstant());
-    }
-
-    Document addressDoc = null;
+        MongoCollection<Document> collection = DBConection.getInstancia().getColeccion("users");
+        java.util.Date birthDateDoc = null;
+        if (worker.getBirthDate() != null) {
+            birthDateDoc = java.util.Date.from(worker.getBirthDate().atStartOfDay(java.time.ZoneId.systemDefault()).toInstant());
+        }
+        Document addressDoc = null;
         if (worker.getAddress() != null) {
             addressDoc = new Document("houseNumber", worker.getAddress().getHouseNumber())
                     .append("streetName", worker.getAddress().getName())
                     .append("floor", worker.getAddress().getFloor())
                     .append("floorLetter", String.valueOf(worker.getAddress().getLetter()));
         }
-    Document workerDoc = new Document("userType", "Worker")
-            .append("name", worker.getName())
-            .append("surname", worker.getSurname())
-            .append("username", worker.getUser())
-            .append("password", worker.getPassword() != null ? worker.getPassword() : "")
-            .append("department", worker.getDepartment() != null ? worker.getDepartment().name() : null)
-            .append("seniority", worker.getSeniority())
-            .append("birthdate", birthDateDoc)
-            .append("address", addressDoc)
-            .append("userId", new org.bson.types.ObjectId()); // Genera un ID único para el nuevo usuario
+        Document workerDoc = new Document("userType", "Worker")
+                .append("name", worker.getName())
+                .append("surname", worker.getSurname())
+                .append("username", worker.getUser())
+                .append("password", worker.getPassword() != null ? worker.getPassword() : "")
+                .append("department", worker.getDepartment() != null ? worker.getDepartment().name() : null)
+                .append("seniority", worker.getSeniority())
+                .append("birthdate", birthDateDoc)
+                .append("address", addressDoc)
+                .append("userId", new org.bson.types.ObjectId());
+        collection.insertOne(workerDoc);
 
-    collection.insertOne(workerDoc);
-}     
+    }
 }

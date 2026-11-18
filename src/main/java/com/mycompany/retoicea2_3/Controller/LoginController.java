@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
     private Usuario logear(String user, String password) {
 
         for (Usuario u : userController.obtainUser()) {
-            if (u.getUser().equals(user) && u.getPasword().equals(password)) {
+            if (u.getUser().equals(user) && u.getPassword().equals(password)) {
                 return u;
             }
         }

@@ -16,16 +16,13 @@ public class RefoundController {
 
     private RefoundDAO dao = new ImplementationRefoundBD();
 
-<<<<<<< HEAD
-    public void createRefound(Refound r) {
-=======
+
     /**
  * Registra una nueva devolución en el sistema.
  *
  * @param r devolución que se desea almacenar.
  */
-    public void createRefound(Refounds r) {
->>>>>>> d2dec5f339456f6303c47d497254a2d9681c0a18
+    public void createRefound(Refound r) {
         dao.createRefound(r);
     }
 }

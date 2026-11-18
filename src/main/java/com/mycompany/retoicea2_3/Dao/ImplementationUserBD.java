@@ -48,7 +48,7 @@ dirección y tipo de usuario.
                     .append("username", c.getUser())
                     .append("name", c.getName())
                     .append("surname", c.getSurname())
-                    .append("password", c.getPasword())
+                    .append("password", c.getPassword())
                     .append("birthdate", c.getBirthDate())
                     .append("address", address)
                     .append("userType", "Client");
@@ -105,8 +105,7 @@ Comprueba si un nombre de usuario ya está registrado en la base de datos.
             u.setName(doc.getString("name"));
             u.setSurname(doc.getString("surname"));
             u.setUser(doc.getString("username"));
-            u.setPasword(doc.getString("password"));
-
+            u.setPassword(doc.getString("password"));
             lista.add(u);
         }
 

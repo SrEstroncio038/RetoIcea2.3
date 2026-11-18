@@ -41,7 +41,6 @@ public class ManageWorkersTest extends ApplicationTest {
             users.insertOne(trabajadorRespaldo);
             trabajadorRespaldo = null;
         }
-
     }
 
     @Test

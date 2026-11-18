@@ -32,7 +32,7 @@ public class AddProductTest extends ApplicationTest {
         if (productoCreado != null) {
             MongoDatabase db = DBConection.getInstancia().getBaseDatos();
             MongoCollection<Document> products = db.getCollection("products");
-            products.deleteOne(new Document("nombre", productoCreado));
+            products.deleteOne(new Document("productName", productoCreado));
             productoCreado = null;
         }
     }

@@ -8,7 +8,7 @@ import com.mycompany.retoicea2_3.main.App;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
@@ -37,10 +37,13 @@ class MainViewControllerTest extends ApplicationTest {
         MainViewController.logedUser = null;
         MainViewController.selectedProduct = null;
         new App().start(stage);
+        App.setRoot("MainView");
+        WaitForAsyncUtils.waitForFxEvents();
     }
 
-    @BeforeEach
-    void resetState() {
+    @AfterEach
+    void limpiarEstado() {
+        MainViewController.logedUser = null;
         MainViewController.selectedProduct = null;
     }
 
@@ -49,7 +52,7 @@ class MainViewControllerTest extends ApplicationTest {
             @Override
             public void run() {
                 try {
-                    new App().start(stage);
+                    App.setRoot("MainView");
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

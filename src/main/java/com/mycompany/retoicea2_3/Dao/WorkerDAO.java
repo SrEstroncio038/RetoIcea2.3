@@ -15,4 +15,8 @@ public interface WorkerDAO {
     public Worker showOneWorker(String userId);
     
     public void deleteWorker(String userId);
+    
+    public void updateWorker(Worker worker, String userId);
+    
+    public void insertWorker(Worker worker);
 }

@@ -73,6 +73,7 @@ y dirección para construir un objeto Worker.
         String surname = trabajadorDoc.getString("surname");
         String username = trabajadorDoc.getString("username");
         String password = trabajadorDoc.getString("password");
+        Integer seniority = trabajadorDoc.getInteger("seniority");
         java.util.Date mongoDate = trabajadorDoc.getDate("birthdate");
         LocalDate birthDate = null;
         if (mongoDate != null) {
@@ -92,6 +93,7 @@ y dirección para construir un objeto Worker.
             address = new Addres(houseNumber, streetName, floor, letter);
         }
         Worker w = new Worker(department, name, surname, "", password, username, birthDate, address);
+        w.setSeniority(seniority);
         return w;
     }
     
@@ -101,5 +103,61 @@ y dirección para construir un objeto Worker.
         resultados.deleteOne(Filters.eq("userId", new ObjectId(userId)));
     }
     
-            
+    @Override
+    public void updateWorker(Worker worker, String userId) {
+        MongoCollection<Document> collection = DBConection.getInstancia().getColeccion("users");
+        Document addressDoc = null;
+        if (worker.getAddress() != null) {
+            addressDoc = new Document("houseNumber", worker.getAddress().getHouseNumber())
+                    .append("streetName", worker.getAddress().getName())
+                    .append("floor", worker.getAddress().getFloor())
+                    .append("floorLetter", String.valueOf(worker.getAddress().getLetter()));
+        }
+        java.util.Date birthDateDoc = null;
+        if (worker.getBirthDate() != null) {
+            birthDateDoc = java.util.Date.from(worker.getBirthDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        }
+        Document workerDoc = new Document("name", worker.getName())
+                .append("surname", worker.getSurname())
+                .append("username", worker.getUser())
+                .append("password", worker.getPassword() != null ? worker.getPassword() : "")
+                .append("department", worker.getDepartment() != null ? worker.getDepartment().name() : null)
+                .append("seniority", worker.getSeniority())
+                .append("birthdate", birthDateDoc)
+                .append("address", addressDoc);
+        collection.updateOne(
+                Filters.eq("userId", new ObjectId(userId)), 
+                new Document("$set", workerDoc)
+        );
+    }
+    
+    @Override
+    public void insertWorker(Worker worker) {
+    MongoCollection<Document> collection = DBConection.getInstancia().getColeccion("users");
+    
+    java.util.Date birthDateDoc = null;
+    if (worker.getBirthDate() != null) {
+        birthDateDoc = java.util.Date.from(worker.getBirthDate().atStartOfDay(java.time.ZoneId.systemDefault()).toInstant());
+    }
+
+    Document addressDoc = null;
+        if (worker.getAddress() != null) {
+            addressDoc = new Document("houseNumber", worker.getAddress().getHouseNumber())
+                    .append("streetName", worker.getAddress().getName())
+                    .append("floor", worker.getAddress().getFloor())
+                    .append("floorLetter", String.valueOf(worker.getAddress().getLetter()));
+        }
+    Document workerDoc = new Document("userType", "Worker")
+            .append("name", worker.getName())
+            .append("surname", worker.getSurname())
+            .append("username", worker.getUser())
+            .append("password", worker.getPassword() != null ? worker.getPassword() : "")
+            .append("department", worker.getDepartment() != null ? worker.getDepartment().name() : null)
+            .append("seniority", worker.getSeniority())
+            .append("birthdate", birthDateDoc)
+            .append("address", addressDoc)
+            .append("userId", new org.bson.types.ObjectId()); // Genera un ID único para el nuevo usuario
+
+    collection.insertOne(workerDoc);
+}     
 }

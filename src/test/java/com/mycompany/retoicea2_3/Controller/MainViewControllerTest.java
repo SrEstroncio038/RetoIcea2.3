@@ -161,7 +161,7 @@ class MainViewControllerTest extends ApplicationTest {
         doubleClickOn(lookup(".list-cell").queryAll().iterator().next());
         WaitForAsyncUtils.waitForFxEvents();
         assertNotNull(MainViewController.selectedProduct);
-        verifyThat("#lblPrice", isVisible());
+        verifyThat("#txtPrice", isVisible());
     }
 
     @Test

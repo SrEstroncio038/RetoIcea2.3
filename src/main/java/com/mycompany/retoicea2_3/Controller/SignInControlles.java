@@ -72,17 +72,17 @@ public class SignInControlles implements Initializable {
     }
 
     /**
- * Valida los datos introducidos por el usuario y realiza
-** el registro de un nuevo cliente en el sistema.
- *
- * Comprueba que los datos personales, dirección, fecha
- * de nacimiento y contraseña cumplan los requisitos
- * establecidos. En caso de éxito, almacena el usuario
- * y redirige a la pantalla de inicio de sesión.
- *
- * @param*event evento generado al pulsar el botón de registro.
- * @throws IOException si ocurre un error al carga* la vista.
- */
+     * Valida los datos introducidos por el usuario y realiza
+     ** el registro de un nuevo cliente en el sistema.
+     *
+     * Comprueba que los datos personales, dirección, fecha
+     * de nacimiento y contraseña cumplan los requisitos
+     * establecidos. En caso de éxito, almacena el usuario
+     * y redirige a la pantalla de inicio de sesión.
+     *
+     * @param*event evento generado al pulsar el botón de registro.
+     * @throws IOException si ocurre un error al carga* la vista.
+     */
     @FXML
     private void login(ActionEvent event) throws IOException {
         boolean correct = true;
@@ -116,7 +116,8 @@ public class SignInControlles implements Initializable {
             alert.setTitle("SingnIn Error");
             alert.setContentText("Invalid date.");
             alert.showAndWait();
-        } else if (!passwrd.getText().matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}$") || passwrd.getText() == null) {
+        } else if (!passwrd.getText().matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}$")
+                || passwrd.getText() == null) {
             correct = false;
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("SingnIn Error");
@@ -138,8 +139,13 @@ public class SignInControlles implements Initializable {
             alert.showAndWait();
         }
         if (correct) {
-            Addres a = new Addres(Integer.parseInt(addres.getText().split(",")[1]), addres.getText().split(",")[0], Integer.parseInt(addres.getText().split(",")[2]), addres.getText().split(",")[3].charAt(0));
-            Client c = new Client(name.getText(), sname.getText(), city.getText(), passwrd.getText(), user.getText(), birthday.getValue(), a);
+            Addres a = new Addres(
+                    Integer.parseInt(addres.getText().split(",")[1].trim()),
+                    addres.getText().split(",")[0].trim(),
+                    Integer.parseInt(addres.getText().split(",")[2].trim()),
+                    addres.getText().split(",")[3].trim().charAt(0));
+            Client c = new Client(name.getText(), sname.getText(), city.getText(), passwrd.getText(), user.getText(),
+                    birthday.getValue(), a);
             boolean exists = userController.clientRegistration(c);
             if (exists) {
                 LOGGER.log(Level.WARNING, "Registro fallido. Usuario existente: {0}", user.getText());

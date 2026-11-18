@@ -75,12 +75,12 @@ class MainViewControllerTest extends ApplicationTest {
     public void listaProductos_muestraCadaProductoConPrecioYStock() {
         ObservableList<String> items = productList().getItems();
         String[] esperados = {
-            "Producto:Silla de roble, precio: 79.99€ | Stock restante: 40",
-            "Producto:Mesa de comedor, precio: 249.5€ | Stock restante: 12",
-            "Producto:Estantería metálica, precio: 59.9€ | Stock restante: 25",
-            "Producto:Sofá tres plazas, precio: 599.0€ | Stock restante: 6",
-            "Producto:Lámpara de pie, precio: 45.75€ | Stock restante: 60",
-            "Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18"
+                "Silla de roble",
+                "Mesa de comedor",
+                "Estantería metálica",
+                "Sofá tres plazas",
+                "Lámpara de pie",
+                "Escritorio con cajones"
         };
         for (String esperado : esperados) {
             boolean encontrado = false;

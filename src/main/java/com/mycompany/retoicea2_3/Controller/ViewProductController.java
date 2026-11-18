@@ -46,6 +46,9 @@ public class ViewProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (!(MainViewController.logedUser instanceof Client)){
+            btnAddToCart.setVisible(false);
+        }
         if (MainViewController.selectedProduct != null) {
             txtName.setText(MainViewController.selectedProduct.getNombre());
             txtPrice.setText(String.valueOf(MainViewController.selectedProduct.getPrecio()));

@@ -47,6 +47,8 @@ public class AddProductController implements Initializable {
     private CheckBox chkPreOwned;
     @FXML
     private Button btnSave;
+    @FXML
+    private Button btnBack;
 
     ProductController productController = new ProductController();
 
@@ -54,6 +56,7 @@ public class AddProductController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         if (MainViewController.logedUser instanceof Client) {
             chkPreOwned.setSelected(true);
+            btnBack.setVisible(false);
         } else {
             chkPreOwned.setSelected(false);
         }
@@ -84,9 +87,10 @@ public class AddProductController implements Initializable {
         App.setRoot("MainView");
     }
 
+    @FXML
     private void back(ActionEvent event) throws IOException {
         ManageProductController.selectedProductToModify = null;
-        App.setRoot("MainView");
+        App.setRoot("ManageProduct");
     }
 
     @FXML
@@ -187,7 +191,7 @@ public class AddProductController implements Initializable {
                 alert.setTitle("Add Product Error");
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
-            }catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

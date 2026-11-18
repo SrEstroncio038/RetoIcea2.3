@@ -105,7 +105,7 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void manageProduct() throws IOException {
-        App.setRoot("ManageProduct");
+        App.setRoot("ManageProducts");
     }
 
     @FXML

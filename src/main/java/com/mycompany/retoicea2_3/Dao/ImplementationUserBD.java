@@ -3,6 +3,7 @@ package com.mycompany.retoicea2_3.Dao;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mycompany.retoicea2_3.Conexion.DBConection;
+import com.mycompany.retoicea2_3.Model.Addres;
 import com.mycompany.retoicea2_3.Model.Admin;
 import com.mycompany.retoicea2_3.Model.Client;
 import com.mycompany.retoicea2_3.Model.Usuario;
@@ -12,24 +13,24 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**
-Implementación de la interfaz UserDAO para gestionar los usuarios
-mediante una base de datos MongoDB.
-Permite registrar clientes, comprobar si un nombre de usuario existe,
-validar contraseñas y obtener los usuarios almacenados en la base de datos.
-
-@author G.2
-*/
+ * Implementación de la interfaz UserDAO para gestionar los usuarios
+ * mediante una base de datos MongoDB.
+ * Permite registrar clientes, comprobar si un nombre de usuario existe,
+ * validar contraseñas y obtener los usuarios almacenados en la base de datos.
+ * 
+ * @author G.2
+ */
 public class ImplementationUserBD implements UserDAO {
 
     /**
-Registra un nuevo cliente en la colección users de MongoDB.
-Antes de realizar el registro, comprueba si el nombre de usuario
-ya existe. Si no existe, almacena sus datos personales,
-dirección y tipo de usuario.
-
-@param c cliente que se desea registrar.
-@return true si el nombre de usuario ya existe, false si no existe.
-*/
+     * Registra un nuevo cliente en la colección users de MongoDB.
+     * Antes de realizar el registro, comprueba si el nombre de usuario
+     * ya existe. Si no existe, almacena sus datos personales,
+     * dirección y tipo de usuario.
+     * 
+     * @param c cliente que se desea registrar.
+     * @return true si el nombre de usuario ya existe, false si no existe.
+     */
     @Override
     public boolean clientRegistration(Client c) {
 
@@ -49,7 +50,10 @@ dirección y tipo de usuario.
                     .append("name", c.getName())
                     .append("surname", c.getSurname())
                     .append("password", c.getPassword())
-                    .append("birthdate", c.getBirthDate())
+                    .append("city", c.getBirthPlace())
+                    .append("birthdate",
+                            java.util.Date
+                                    .from(c.getBirthDate().atStartOfDay(java.time.ZoneId.systemDefault()).toInstant()))
                     .append("address", address)
                     .append("userType", "Client");
             users.insertOne(user);
@@ -58,11 +62,11 @@ dirección y tipo de usuario.
     }
 
     /**
-Comprueba si un nombre de usuario ya está registrado en la base de datos.
-
-@param username nombre de usuario que se desea comprobar.
-@return true si el usuario existe, false en caso contrario.
-*/
+     * Comprueba si un nombre de usuario ya está registrado en la base de datos.
+     * 
+     * @param username nombre de usuario que se desea comprobar.
+     * @return true si el usuario existe, false en caso contrario.
+     */
     public boolean usernameExists(String username) {
         boolean exsists;
         MongoDatabase db = DBConection.getInstancia().getBaseDatos();
@@ -106,6 +110,20 @@ Comprueba si un nombre de usuario ya está registrado en la base de datos.
             u.setSurname(doc.getString("surname"));
             u.setUser(doc.getString("username"));
             u.setPassword(doc.getString("password"));
+            u.setBirthPlace(doc.getString("city"));
+            java.util.Date d = doc.getDate("birthdate");
+            if (d != null) {
+                u.setBirthDate(d.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate());
+            }
+
+            Document a = doc.get("address", Document.class);
+            if (a != null) {
+                u.setAddress(new Addres(
+                        a.getInteger("houseNumber"),
+                        a.getString("streetName"),
+                        a.getInteger("floor"),
+                        a.getString("floorLetter").charAt(0)));
+            }
             lista.add(u);
         }
 

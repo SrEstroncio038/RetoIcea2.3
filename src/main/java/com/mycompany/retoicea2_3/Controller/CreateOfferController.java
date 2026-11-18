@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Model.Offer;
@@ -22,9 +18,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 /**
- * FXML Controller class
+ * Controlador de la vista de gestión de ofertas.
+ * Permite crear y eliminar ofertas asociadas a productos,
+ * validando los datos introducidos por el usuario.
  *
- * @author asola
+ * @author G.2
  */
 public class CreateOfferController implements Initializable {
 
@@ -46,14 +44,10 @@ public class CreateOfferController implements Initializable {
     ProductController productController = new ProductController();
     OfferController offerController = new OfferController();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> productos = productController.showAllProductos();
         cmbProduct.setItems(productos);
-
     }
 
     @FXML
@@ -66,6 +60,12 @@ public class CreateOfferController implements Initializable {
         App.setRoot("ManageProduct");
     }
 
+    /**
+ * Crea una nueva oferta para el producto seleccionado
+ * tras validar los datos introducidos por el usuario.
+ * La oferta queda asociada al producto indicado y se
+ * almacena en el sistema.
+ */
     @FXML
     public void createOffer() {
         boolean correct = true;
@@ -98,6 +98,10 @@ public class CreateOfferController implements Initializable {
         }
     }
 
+    /**
+ * Elimina una oferta asociada al producto seleccionado
+ * tras validar los datos introducidos por el usuario.
+ */
     @FXML
     public void deleteOffer() {
         Offer o = null;

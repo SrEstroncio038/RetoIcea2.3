@@ -1,15 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.mycompany.retoicea2_3.Dao;
 
 import com.mycompany.retoicea2_3.Model.Refound;
 
 /**
- *
- * @author asola
- */
+Interfaz DAO encargada de definir las operaciones relacionadas
+con las devoluciones de productos.
+
+@author G.2
+*/
 public interface RefoundDAO {
 
     public void createRefound(Refound r);

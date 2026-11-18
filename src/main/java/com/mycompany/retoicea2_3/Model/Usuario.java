@@ -1,21 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.retoicea2_3.Model;
 
 import java.time.LocalDate;
 
-/**
- *
- * @author asola
- */
 public abstract class Usuario {
 
     private String name;
     private String surname;
     private String city;
-    private String pasword;
+    private String password;
     private String user;
     private LocalDate birthDate;
     private Addres address;
@@ -44,12 +36,12 @@ public abstract class Usuario {
         this.city = birthPlace;
     }
 
-    public String getPasword() {
-        return pasword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasword(String pasword) {
-        this.pasword = pasword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getUser() {
@@ -83,7 +75,7 @@ public abstract class Usuario {
         this.name = name;
         this.surname = surname;
         this.city = birthPlace;
-        this.pasword = pasword;
+        this.password = pasword;
         this.user = user;
         this.birthDate = birthDate;
         this.address = address;
@@ -91,7 +83,7 @@ public abstract class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "name=" + name + ", surname=" + surname + ", birthPlace=" + city + ", pasword=" + pasword + ", user=" + user + ", birthDate=" + birthDate + '}';
+        return "Usuario{" + "name=" + name + ", surname=" + surname + ", birthPlace=" + city + ", pasword=" + password + ", user=" + user + ", birthDate=" + birthDate + '}';
     }
 
 }

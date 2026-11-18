@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Model.Client;
@@ -26,9 +22,12 @@ import javafx.scene.control.SelectionMode;
 import org.bson.types.ObjectId;
 
 /**
- * FXML Controller class
+ * Controlador de la vista de devoluciones.
+ * Permite al cliente seleccionar productos comprados
+ * y solicitar su devolución, generando un registro
+ * de reembolso en el sistema.
  *
- * @author asola
+ * @author G.2
  */
 public class RefoundViewController implements Initializable {
 
@@ -43,9 +42,6 @@ public class RefoundViewController implements Initializable {
 
     RefoundController rc = new RefoundController();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<Product> items = FXCollections.observableArrayList();
@@ -58,6 +54,11 @@ public class RefoundViewController implements Initializable {
         listProduct.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
+    /**
+ * Procesa la devolución de los productos seleccionados.
+ * Genera un registro de reembolso, actualiza los datos
+ * del cliente y elimina los productos devueltos de la lista.
+ */
     @FXML
     public void refound() {
 
@@ -80,9 +81,7 @@ public class RefoundViewController implements Initializable {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setContentText("Product refounded: ");
             alerta.showAndWait();
-
         }
-
     }
 
     @FXML

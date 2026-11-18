@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Dao.ImplementationUserBD;
@@ -11,8 +7,12 @@ import com.mycompany.retoicea2_3.Model.Usuario;
 import java.util.ArrayList;
 
 /**
+ * Controlador encargado de la gestión de usuarios.
+ * Actúa como intermediario entre la interfaz de usuario
+ * y la capa de acceso a datos para consultar usuarios
+ * y registrar nuevos clientes en el sistema.
  *
- * @author asola
+ * @author G.2
  */
 public class UserController {
 

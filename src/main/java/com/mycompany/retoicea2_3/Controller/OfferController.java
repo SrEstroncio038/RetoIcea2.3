@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Dao.ImplementationOfferBD;
@@ -9,8 +5,12 @@ import com.mycompany.retoicea2_3.Dao.OfferDAO;
 import com.mycompany.retoicea2_3.Model.Offer;
 
 /**
+ * Controlador encargado de la gestión de ofertas.
+ * Actúa como intermediario entre la interfaz de usuario
+ * y la capa de acceso a datos para realizar operaciones
+ * relacionadas con las ofertas.
  *
- * @author asola
+ * @author G.2
  */
 public class OfferController {
 
@@ -24,6 +24,12 @@ public class OfferController {
         dao.deleteOffer(offer);
     }
 
+    /**
+ * Obtiene una oferta concreta a partir de los datos proporcionados.
+ *
+ * @param o oferta utilizada como criterio de búsqueda.
+ * @return la oferta encontrada o null si no existe.
+ */
     public Offer showOneOffer(Offer o){
         return dao.showOneOffer(o);
     }

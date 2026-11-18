@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.retoicea2_3.Model;
 
 import org.bson.types.ObjectId;
 
-/**
- *
- * @author asola
- */
 public class Product {
 
     private ObjectId id;

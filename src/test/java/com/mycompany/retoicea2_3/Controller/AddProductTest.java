@@ -16,10 +16,6 @@ import static org.testfx.api.FxAssert.verifyThat;
 import org.testfx.framework.junit5.ApplicationTest;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
 
-/**
- *
- * @author asola
- */
 public class AddProductTest extends ApplicationTest {
 
     private String productoCreado = null;

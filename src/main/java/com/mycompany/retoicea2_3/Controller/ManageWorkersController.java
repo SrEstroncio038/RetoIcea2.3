@@ -14,9 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 /**
- * FXML Controller class
+ * Controlador de la vista de gestión de trabajadores.
+ * Permite visualizar, modificar, eliminar y registrar
+ * trabajadores dentro del sistema.
  *
- * @author asola
+ * @author G.2
  */
 public class ManageWorkersController implements Initializable {
 
@@ -32,12 +34,10 @@ public class ManageWorkersController implements Initializable {
     private ListView<String> workers;
     
     public static Worker selectedWorker;
+    public static String selectedUserId;
     
     WorkerController workerController = new WorkerController();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         selectedWorker=null;
@@ -51,6 +51,7 @@ public class ManageWorkersController implements Initializable {
         if (selectedText != null) {
             String[] parts = selectedText.split(" ");
             String userId = parts[parts.length - 1];
+            selectedUserId=userId;
             selectedWorker = workerController.showOneWorker(userId);
             if (selectedWorker != null) {
                 App.setRoot("AddWorker");

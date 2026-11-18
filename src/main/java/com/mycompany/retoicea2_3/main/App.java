@@ -16,8 +16,11 @@ import java.time.LocalDate;
 import org.bson.types.ObjectId;
 
 /**
- * JavaFX App
- */
+Clase principal de la aplicación JavaFX.
+Se encarga de iniciar la aplicación y cargar las vistas FXML.
+
+@author G.2
+*/
 public class App extends Application {
 
     private static Scene scene;

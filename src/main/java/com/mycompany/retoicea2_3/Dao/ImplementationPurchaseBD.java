@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.retoicea2_3.Dao;
 
 import com.mongodb.client.MongoCollection;
@@ -16,11 +12,23 @@ import java.util.List;
 import org.bson.Document;
 
 /**
- *
- * @author asola
- */
+Implementación de la interfaz PurchaseDAO para gestionar las compras
+mediante una base de datos MongoDB.
+Permite registrar las compras realizadas por los clientes,
+almacenando la información del pedido, la dirección de entrega
+y los productos adquiridos.
+
+@author G.2
+*/
 public class ImplementationPurchaseBD implements PurchaseDAO {
 
+    /**
+Registra una nueva compra en la colección orders de MongoDB.
+Obtiene los datos de la dirección de entrega y los productos comprados,
+y los almacena junto con la información general del pedido.
+
+@param p compra que se desea registrar en la base de datos.
+*/
     @Override
     public void createPurchase(Purchase p) {
         MongoCollection<Document> collection = DBConection.getInstancia().getColeccion("orders");

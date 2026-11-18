@@ -6,6 +6,12 @@ import com.mycompany.retoicea2_3.Model.Usuario;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 
+/**
+Interfaz DAO encargada de definir las operaciones relacionadas
+con la gestión de usuarios y el registro de clientes.
+
+@author G.2
+*/
 public interface UserDAO {
 
     public boolean clientRegistration(Client c);

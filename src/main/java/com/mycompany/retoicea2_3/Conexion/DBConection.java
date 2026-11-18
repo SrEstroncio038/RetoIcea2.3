@@ -10,6 +10,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Clase que gestiona la conexión con la base de datos MongoDB utilizando el patrón Singleton.
+ * Se encarga de leer la configuración desde un archivo de propiedades y proporcionar
+ * acceso centralizado a las colecciones y bases de datos.
+ * 
+ * @author G.2
+ */
 public class DBConection {
 
     private static final String ARCHIVO_PROPIEDADES = "/com/mycompany/retoicea2_3/db.properties";

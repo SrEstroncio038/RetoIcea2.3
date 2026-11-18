@@ -15,10 +15,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 /**
- * FXML Controller class
- *
- * @author asola
- */
+Controlador encargado de gestionar la visualización de los productos.
+Muestra la información del producto seleccionado y permite añadirlo
+al carrito de compra del cliente.
+
+@author G.2
+*/
 public class ViewProductController implements Initializable {
 
     @FXML
@@ -42,9 +44,6 @@ public class ViewProductController implements Initializable {
     @FXML
     private TextField txtWidth;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (MainViewController.selectedProduct != null) {
@@ -76,6 +75,16 @@ public class ViewProductController implements Initializable {
         App.setRoot("MainView");
     }
 
+    /**
+Valida los datos del producto y lo añade al carrito del cliente.
+Comprueba que el nombre, precio, stock y características del producto
+tengan un formato válido. Si algún dato no es correcto, muestra
+un mensaje de error. Si todos los datos son válidos, crea el producto,
+lo añade al carrito y vuelve a la pantalla principal.
+
+@param event evento producido al pulsar el botón de añadir al carrito.
+@throws IOException si se produce un error al cargar la pantalla.
+*/
     @FXML
     private void addToCart(ActionEvent event) throws IOException {
         Characteristics c = new Characteristics(txtMaterial.getText().trim(), txtColour.getText().trim(),

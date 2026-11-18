@@ -6,7 +6,7 @@ package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Dao.ImplementationRefoundBD;
 import com.mycompany.retoicea2_3.Dao.RefoundDAO;
-import com.mycompany.retoicea2_3.Model.Refounds;
+import com.mycompany.retoicea2_3.Model.Refound;
 
 /**
  *
@@ -16,7 +16,7 @@ public class RefoundController {
 
     private RefoundDAO dao = new ImplementationRefoundBD();
 
-    public void createRefound(Refounds r) {
+    public void createRefound(Refound r) {
         dao.createRefound(r);
     }
 }

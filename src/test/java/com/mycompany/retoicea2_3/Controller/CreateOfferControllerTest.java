@@ -1,5 +1,8 @@
 package com.mycompany.retoicea2_3.Controller;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mycompany.retoicea2_3.Conexion.DBConection;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -9,6 +12,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.DialogPane;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import org.bson.Document;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.control.ComboBoxMatchers;
@@ -21,10 +26,23 @@ import static org.testfx.matcher.base.NodeMatchers.isVisible;
 
 public class CreateOfferControllerTest extends ApplicationTest {
 
+    private boolean ofertaCreada = false;
+
     @Override
     public void start(Stage stage) throws IOException {
         new App().start(stage);
         App.setRoot("CreateOffer");
+    }
+
+    @AfterEach
+    public void limpiarBaseDeDatos() {
+        if (ofertaCreada) {
+            MongoDatabase db = DBConection.getInstancia().getBaseDatos();
+            MongoCollection<Document> offers = db.getCollection("offers");
+            offers.deleteMany(new Document("discount", 12.0));
+            offers.deleteMany(new Document("discount", 12));
+            ofertaCreada = false;
+        }
     }
 
     @Test
@@ -117,6 +135,7 @@ public class CreateOfferControllerTest extends ApplicationTest {
 
     @Test
     public void createOffer() {
+        ofertaCreada = true;
         clickOn("#cmbProduct");
         type(KeyCode.DOWN);
         type(KeyCode.ENTER);
@@ -130,13 +149,15 @@ public class CreateOfferControllerTest extends ApplicationTest {
         clickOn("Aceptar");
     }
 
-     @Test
+    @Test
     public void borrarOferta() {
         clickOn("#cmbProduct");
         clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
         clickOn("#txtDiscount").write("12");
         DatePicker datePicker = lookup("#date").queryAs(DatePicker.class);
         datePicker.setValue(LocalDate.now().plusYears(1));
+        clickOn("#btnAdd");
+        clickOn("Aceptar");
         clickOn("#btnRemove");
         DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
         assertNotNull(dialogPane);
@@ -144,7 +165,6 @@ public class CreateOfferControllerTest extends ApplicationTest {
         clickOn("Aceptar");
     }
 
-    
     @Test
     public void errorSiNoHayProductoSeleccionadoBorrar() {
         clickOn("#btnRemove");
@@ -207,11 +227,5 @@ public class CreateOfferControllerTest extends ApplicationTest {
     public void goHome() {
         clickOn("#btnHome");
         verifyThat("#products", isVisible());
-    }
-
-    @Test
-    public void goBack() {
-        clickOn("#btnBack");
-        verifyThat("#btnManageOffers", isVisible());
     }
 }

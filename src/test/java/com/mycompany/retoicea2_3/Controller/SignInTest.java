@@ -1,10 +1,15 @@
 package com.mycompany.retoicea2_3.Controller;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mycompany.retoicea2_3.Conexion.DBConection;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
 import javafx.scene.control.DialogPane;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import org.bson.Document;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -15,10 +20,22 @@ import static org.testfx.matcher.base.NodeMatchers.isVisible;
 
 public class SignInTest extends ApplicationTest {
 
+    private String usuarioCreado = null;
+
     @Override
     public void start(Stage stage) throws IOException {
         new App().start(stage);
         App.setRoot("SignIn");
+    }
+
+    @AfterEach
+    public void limpiarBaseDeDatos() {
+        if (usuarioCreado != null) {
+            MongoDatabase db = DBConection.getInstancia().getBaseDatos();
+            MongoCollection<Document> users = db.getCollection("users");
+            users.deleteOne(new Document("username", usuarioCreado));
+            usuarioCreado = null;
+        }
     }
 
     @Test
@@ -153,8 +170,10 @@ public class SignInTest extends ApplicationTest {
 
     @Test
     public void registroExitosoCambioVentana() {
+        usuarioCreado = "cliente_test";
+
         clickOn("#name").write("Juan");
-        clickOn("#user").write("client_test_" + System.currentTimeMillis());
+        clickOn("#user").write(usuarioCreado);
         clickOn("#sname").write("Perez");
         clickOn("#city").write("Bilbao");
         clickOn("#birthday").write("01/01/2000").push(KeyCode.ENTER);

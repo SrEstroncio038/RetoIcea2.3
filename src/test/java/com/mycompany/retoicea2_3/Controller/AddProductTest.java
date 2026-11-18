@@ -1,9 +1,14 @@
 package com.mycompany.retoicea2_3.Controller;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mycompany.retoicea2_3.Conexion.DBConection;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
 import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
+import org.bson.Document;
+import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
@@ -17,11 +22,23 @@ import static org.testfx.matcher.base.NodeMatchers.isVisible;
  */
 public class AddProductTest extends ApplicationTest {
 
+    private String productoCreado = null;
+
     @Override
     public void start(Stage stage) throws IOException {
         MainViewController.logedUser = null;
         new App().start(stage);
         App.setRoot("AddProduct");
+    }
+
+    @AfterEach
+    public void limpiarBaseDeDatos() {
+        if (productoCreado != null) {
+            MongoDatabase db = DBConection.getInstancia().getBaseDatos();
+            MongoCollection<Document> products = db.getCollection("products");
+            products.deleteOne(new Document("nombre", productoCreado));
+            productoCreado = null;
+        }
     }
 
     @Test
@@ -162,7 +179,9 @@ public class AddProductTest extends ApplicationTest {
 
     @Test
     public void crearProductoExitoso() {
-        clickOn("#txtName").write("Mesa Test " + System.currentTimeMillis());
+        productoCreado = "Mesa Test " + System.currentTimeMillis();
+
+        clickOn("#txtName").write(productoCreado);
         clickOn("#txtPrice").write("19,99");
         clickOn("#txtStock").write("5");
         clickOn("#txtMaterial").write("Roble");

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bson.types.ObjectId;
+import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -29,10 +30,16 @@ public class ViewProductTest extends ApplicationTest {
     @Override
     public void start(Stage stage) throws IOException {
         new App().start(stage);
-        cliente = new Client("Juan", "Perez", "Bilbao", "Pass1234!", "juanp", LocalDate.of(2000, 1, 1),new Addres(12, "Calle Mayor", 3, 'A'));
+        cliente = new Client("Juan", "Perez", "Bilbao", "Pass1234!", "juanp", LocalDate.of(2000, 1, 1), new Addres(12, "Calle Mayor", 3, 'A'));
         MainViewController.logedUser = cliente;
-        MainViewController.selectedProduct = new Product(new ObjectId(), "Estanteria", 89.99f, 10, false,new Characteristics("Pino", "Blanco", 12.0f, 180.0f, 80.0f));
+        MainViewController.selectedProduct = new Product(new ObjectId(), "Estanteria", 89.99f, 10, false, new Characteristics("Pino", "Blanco", 12.0f, 180.0f, 80.0f));
         App.setRoot("ViewProduct");
+    }
+
+    @AfterEach
+    public void limpiarEstado() {
+        MainViewController.logedUser = null;
+        MainViewController.selectedProduct = null;
     }
 
     @Test

@@ -7,7 +7,7 @@ public class Client extends Usuario {
 
     private int id;
     private ArrayList<Purchase> purchases = new ArrayList<Purchase>();
-    private ArrayList<Refounds> refounds = new ArrayList<Refounds>();
+    private ArrayList<Refound> refounds = new ArrayList<Refound>();
     private ArrayList<Product> soldProducts = new ArrayList<Product>();
     private ArrayList<Product> cart = new ArrayList<Product>();
 
@@ -39,11 +39,11 @@ public class Client extends Usuario {
         this.purchases.add(purchases);
     }
 
-    public ArrayList<Refounds> getRefounds() {
+    public ArrayList<Refound> getRefounds() {
         return refounds;
     }
 
-    public void setRefounds(Refounds refounds) {
+    public void setRefounds(Refound refounds) {
         this.refounds.add(refounds);
     }
 
@@ -61,7 +61,7 @@ public class Client extends Usuario {
     public Client(String name, String surname, String birthPlace, String pasword, String user, LocalDate birthDate, Addres address) {
         super(name, surname, birthPlace, pasword, user, birthDate, address);
         this.purchases = new ArrayList<Purchase>();
-        this.refounds = new ArrayList<Refounds>();
+        this.refounds = new ArrayList<Refound>();
         this.soldProducts = new ArrayList<Product>();
     }
 

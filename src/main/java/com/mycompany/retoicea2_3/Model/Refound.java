@@ -4,17 +4,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import org.bson.types.ObjectId;
 
-public class Refounds {
+public class Refound {
 
     private ObjectId refundId;
     private LocalDate refundDate;
     private double totalPrice;
     private ArrayList<Product> refundProducts;
 
-    public Refounds() {
+    public Refound() {
     }
 
-    public Refounds(ObjectId refundId, LocalDate refundDate, double totalPrice, ArrayList<Product> refundProducts) {
+    public Refound(ObjectId refundId, LocalDate refundDate, double totalPrice, ArrayList<Product> refundProducts) {
         this.refundId = refundId;
         this.refundDate = refundDate;
         this.totalPrice = totalPrice;

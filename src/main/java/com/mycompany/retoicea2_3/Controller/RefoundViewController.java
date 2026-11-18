@@ -7,7 +7,7 @@ package com.mycompany.retoicea2_3.Controller;
 import com.mycompany.retoicea2_3.Model.Client;
 import com.mycompany.retoicea2_3.Model.Product;
 import com.mycompany.retoicea2_3.Model.Purchase;
-import com.mycompany.retoicea2_3.Model.Refounds;
+import com.mycompany.retoicea2_3.Model.Refound;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
 import java.net.URL;
@@ -73,7 +73,7 @@ public class RefoundViewController implements Initializable {
                 refundProducts.add(new Product(pr.getId(), pr.getNombre(), pr.getPrecio(), pr.getStock(), pr.isSeminuevo(), pr.getCharacteristics()));
                 total += pr.getPrecio();
             }
-            Refounds r = new Refounds(new ObjectId(), LocalDate.now(), total, refundProducts);
+            Refound r = new Refound(new ObjectId(), LocalDate.now(), total, refundProducts);
             rc.createRefound(r);
             listProduct.getItems().removeAll(new ArrayList<>(selected));
             ((Client) MainViewController.logedUser).setRefounds(r);

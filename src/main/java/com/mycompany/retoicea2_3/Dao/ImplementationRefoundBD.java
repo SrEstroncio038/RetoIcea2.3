@@ -4,7 +4,7 @@ import com.mongodb.client.MongoCollection;
 import com.mycompany.retoicea2_3.Conexion.DBConection;
 import com.mycompany.retoicea2_3.Model.Characteristics;
 import com.mycompany.retoicea2_3.Model.Product;
-import com.mycompany.retoicea2_3.Model.Refounds;
+import com.mycompany.retoicea2_3.Model.Refound;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +18,7 @@ import org.bson.Document;
 public class ImplementationRefoundBD implements RefoundDAO {
 
     @Override
-    public void createRefound(Refounds r) {
+    public void createRefound(Refound r) {
         MongoCollection<Document> collection = DBConection.getInstancia().getColeccion("refund");
         List<Document> productos = new ArrayList<>();
         for (Product p : r.getRefundProducts()) {

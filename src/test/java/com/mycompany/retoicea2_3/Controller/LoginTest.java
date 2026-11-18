@@ -1,12 +1,7 @@
 package com.mycompany.retoicea2_3.Controller;
 
-import com.mycompany.retoicea2_3.Model.Client;
-import com.mycompany.retoicea2_3.Model.Usuario;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
-import java.util.ArrayList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
@@ -28,6 +23,11 @@ public class LoginTest extends ApplicationTest {
         App.setRoot("Login");
     }
 
+    @AfterEach
+    public void limpiarEstado() {
+        MainViewController.logedUser = null;
+    }
+
     @Test
     public void loginConUsuarioIncorrecto() {
         clickOn("#txtUser").write("usuarioInexistente");
@@ -37,6 +37,7 @@ public class LoginTest extends ApplicationTest {
         assertNotNull(dialogPane);
         assertEquals("User or password are incorrect", dialogPane.getContentText());
         assertNull(MainViewController.logedUser);
+        clickOn("Aceptar");
     }
 
     @Test
@@ -46,7 +47,7 @@ public class LoginTest extends ApplicationTest {
         assertNotNull(dialogPane);
         assertEquals("User or password are incorrect", dialogPane.getContentText());
         assertNull(MainViewController.logedUser);
-        
+        clickOn("Aceptar");
     }
 
     @Test
@@ -54,6 +55,7 @@ public class LoginTest extends ApplicationTest {
         clickOn("#txtUser").write("admin_elena");
         clickOn("#txtPassword").write("AdminPassword987");
         clickOn("#btnContinue");
+        assertNotNull(MainViewController.logedUser);
         assertEquals("admin_elena", MainViewController.logedUser.getUser());
         verifyThat("#products", isVisible());
     }
@@ -61,7 +63,6 @@ public class LoginTest extends ApplicationTest {
     @Test
     public void goHome() {
         clickOn("#home");
-
         verifyThat("#products", isVisible());
     }
 }

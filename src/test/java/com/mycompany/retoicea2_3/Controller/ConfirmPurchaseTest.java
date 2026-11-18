@@ -1,24 +1,29 @@
 package com.mycompany.retoicea2_3.Controller;
 
+import static com.mongodb.assertions.Assertions.assertTrue;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mycompany.retoicea2_3.Conexion.DBConection;
 import com.mycompany.retoicea2_3.Model.Addres;
 import com.mycompany.retoicea2_3.Model.Characteristics;
 import com.mycompany.retoicea2_3.Model.Client;
 import com.mycompany.retoicea2_3.Model.Product;
+import com.mycompany.retoicea2_3.Model.Purchase;
 import com.mycompany.retoicea2_3.main.App;
 import java.io.IOException;
 import java.time.LocalDate;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
 
@@ -39,6 +44,22 @@ public class ConfirmPurchaseTest extends ApplicationTest {
 
         new App().start(stage);
         App.setRoot("ConfirmPurchase");
+    }
+
+    @AfterEach
+    public void limpiarBaseDeDatos() {
+        if (cliente != null && cliente.getPurchases() != null && !cliente.getPurchases().isEmpty()) {
+            MongoDatabase db = DBConection.getInstancia().getBaseDatos();
+            MongoCollection<Document> purchases = db.getCollection("purchases");
+            for (Purchase p : cliente.getPurchases()) {
+                purchases.deleteOne(new Document("orderId", p.getOrderId()));
+            }
+            // Restauramos el stock original de los dos productos por si la compra lo descontó en BD
+            MongoCollection<Document> products = db.getCollection("products");
+            products.updateOne(new Document("nombre", "Silla de roble"), new Document("$set", new Document("stock", 40)));
+            products.updateOne(new Document("nombre", "Mesa de comedor"), new Document("$set", new Document("stock", 12)));
+        }
+        MainViewController.logedUser = null;
     }
 
     @Test

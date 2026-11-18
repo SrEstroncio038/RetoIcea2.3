@@ -18,8 +18,23 @@ import javafx.collections.ObservableList;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
+/**
+Implementación de la interfaz WorkerDAO para gestionar los trabajadores
+mediante una base de datos MongoDB.
+Permite consultar todos los trabajadores, obtener la información
+de un trabajador concreto y eliminar trabajadores de la base de datos.
+
+@author G.2
+*/
 public class ImplementationWorkerBD implements WorkerDAO{
     
+    /**
+Obtiene todos los trabajadores registrados en la colección users.
+Recupera sus nombres, apellidos e identificadores y los almacena
+en una lista observable.
+
+@return lista observable con la información de los trabajadores.
+*/
     @Override
     public ObservableList<String> showAllWorkers(){
         MongoCollection<Document> resultados=DBConection.getInstancia().getColeccion("users");
@@ -30,6 +45,14 @@ public class ImplementationWorkerBD implements WorkerDAO{
         return items;
     }
     
+    /**
+Busca un trabajador en la base de datos mediante su identificador.
+Recupera sus datos personales, departamento, fecha de nacimiento
+y dirección para construir un objeto Worker.
+
+@param userId identificador del trabajador que se desea consultar.
+@return objeto Worker con sus datos o null si no se encuentra.
+*/
     @Override
     public Worker showOneWorker(String userId){
         MongoCollection<Document> resultados=DBConection.getInstancia().getColeccion("users");

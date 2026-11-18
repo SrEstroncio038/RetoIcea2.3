@@ -11,8 +11,23 @@ import java.util.Date;
 import java.util.List;
 import org.bson.Document;
 
+/**
+Implementación de la interfaz RefoundDAO para gestionar las devoluciones
+mediante una base de datos MongoDB.
+Permite registrar las devoluciones realizadas, almacenando la información
+de los productos devueltos, sus características y el importe total.
+
+@author G.2
+*/
 public class ImplementationRefoundBD implements RefoundDAO {
 
+    /**
+Registra una nueva devolución en la colección refund de MongoDB.
+Obtiene los datos de los productos devueltos y sus características,
+y los almacena junto con la fecha de devolución y el importe total.
+
+@param r devolución que se desea registrar en la base de datos.
+*/
     @Override
     public void createRefound(Refounds r) {
         MongoCollection<Document> collection = DBConection.getInstancia().getColeccion("refund");

@@ -18,10 +18,6 @@ import static org.testfx.api.FxAssert.verifyThat;
 import org.testfx.framework.junit5.ApplicationTest;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
 
-/**
- *
- * @author asola
- */
 public class ViewProductTest extends ApplicationTest {
 
     private Client cliente;

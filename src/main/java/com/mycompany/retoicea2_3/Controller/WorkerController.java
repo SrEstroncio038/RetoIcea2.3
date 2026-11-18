@@ -5,6 +5,13 @@ import com.mycompany.retoicea2_3.Dao.WorkerDAO;
 import com.mycompany.retoicea2_3.Model.Worker;
 import javafx.collections.ObservableList;
 
+/**
+Controlador encargado de gestionar los trabajadores.
+Actúa como intermediario entre la interfaz de usuario
+y la capa de acceso a datos para consultar y eliminar trabajadores.
+
+@author G.2
+*/
 public class WorkerController {
     private final WorkerDAO dao=new ImplementationWorkerBD();
     

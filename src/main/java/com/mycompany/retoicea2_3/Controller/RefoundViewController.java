@@ -21,6 +21,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import org.bson.types.ObjectId;
 
+/**
+ * Controlador de la vista de devoluciones.
+ * Permite al cliente seleccionar productos comprados
+ * y solicitar su devolución, generando un registro
+ * de reembolso en el sistema.
+ *
+ * @author G.2
+ */
 public class RefoundViewController implements Initializable {
 
     @FXML
@@ -46,6 +54,11 @@ public class RefoundViewController implements Initializable {
         listProduct.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
+    /**
+ * Procesa la devolución de los productos seleccionados.
+ * Genera un registro de reembolso, actualiza los datos
+ * del cliente y elimina los productos devueltos de la lista.
+ */
     @FXML
     public void refound() {
 

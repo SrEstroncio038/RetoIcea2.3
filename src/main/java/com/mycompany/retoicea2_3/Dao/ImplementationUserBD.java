@@ -11,8 +11,25 @@ import java.util.ArrayList;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+/**
+Implementación de la interfaz UserDAO para gestionar los usuarios
+mediante una base de datos MongoDB.
+Permite registrar clientes, comprobar si un nombre de usuario existe,
+validar contraseñas y obtener los usuarios almacenados en la base de datos.
+
+@author G.2
+*/
 public class ImplementationUserBD implements UserDAO {
 
+    /**
+Registra un nuevo cliente en la colección users de MongoDB.
+Antes de realizar el registro, comprueba si el nombre de usuario
+ya existe. Si no existe, almacena sus datos personales,
+dirección y tipo de usuario.
+
+@param c cliente que se desea registrar.
+@return true si el nombre de usuario ya existe, false si no existe.
+*/
     @Override
     public boolean clientRegistration(Client c) {
 
@@ -40,6 +57,12 @@ public class ImplementationUserBD implements UserDAO {
         return exsists;
     }
 
+    /**
+Comprueba si un nombre de usuario ya está registrado en la base de datos.
+
+@param username nombre de usuario que se desea comprobar.
+@return true si el usuario existe, false en caso contrario.
+*/
     public boolean usernameExists(String username) {
         boolean exsists;
         MongoDatabase db = DBConection.getInstancia().getBaseDatos();

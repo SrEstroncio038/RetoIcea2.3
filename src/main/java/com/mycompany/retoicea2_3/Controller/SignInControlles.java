@@ -25,6 +25,17 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import utils.LoggerClass;
 
+/**
+ * Controlador de la vista de registro de clientes.
+ * Permite registrar nuevos usuarios validando los datos
+ * introducidos, comprobando si el nombre de usuario ya existe
+ * y almacenando el nuevo cliente en el sistema.
+ *
+ * Además, registra en los logs los intentos de registro
+ * exitosos y fallidos.
+ *
+ * @author G.2
+ */
 public class SignInControlles implements Initializable {
     private static final Logger LOGGER = LoggerClass.getLogger();
     @FXML
@@ -60,6 +71,18 @@ public class SignInControlles implements Initializable {
         App.setRoot("MainView");
     }
 
+    /**
+ * Valida los datos introducidos por el usuario y realiza
+** el registro de un nuevo cliente en el sistema.
+ *
+ * Comprueba que los datos personales, dirección, fecha
+ * de nacimiento y contraseña cumplan los requisitos
+ * establecidos. En caso de éxito, almacena el usuario
+ * y redirige a la pantalla de inicio de sesión.
+ *
+ * @param*event evento generado al pulsar el botón de registro.
+ * @throws IOException si ocurre un error al carga* la vista.
+ */
     @FXML
     private void login(ActionEvent event) throws IOException {
         boolean correct = true;

@@ -16,6 +16,16 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import utils.LoggerClass;
 
+/**
+ * Controlador encargado de la autenticación de usuarios.
+ * Permite validar las credenciales introducidas en el formulario
+ * de inicio de sesión y acceder a la aplicación si son correctas.
+ *
+ * Además, registra en el sistema de logs los intentos de acceso
+ * exitosos y fallidos.
+ *
+ * @author G.2
+ */
 public class LoginController implements Initializable {
     private static final Logger LOGGER = LoggerClass.getLogger();
     @FXML
@@ -43,6 +53,15 @@ public class LoginController implements Initializable {
         return null;
     }
 
+    /**
+ * Realiza el proceso de autenticación del usuario.
+ * Si las credenciales son válidas, almacena el usuario
+ * autenticado y accede a la vista principal. En caso
+** contrario, muestra un mensaje de error y registra
+ * el intento fallido en el log.
+ *
+ * @throws IOException se se produce un error al cargar la vista.
+ */
     @FXML
     public void login() throws IOException {
 

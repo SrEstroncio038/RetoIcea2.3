@@ -17,6 +17,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+/**
+ * Controlador de la vista de gestión de ofertas.
+ * Permite crear y eliminar ofertas asociadas a productos,
+ * validando los datos introducidos por el usuario.
+ *
+ * @author G.2
+ */
 public class CreateOfferController implements Initializable {
 
     @FXML
@@ -53,6 +60,12 @@ public class CreateOfferController implements Initializable {
         App.setRoot("ManageProduct");
     }
 
+    /**
+ * Crea una nueva oferta para el producto seleccionado
+ * tras validar los datos introducidos por el usuario.
+ * La oferta queda asociada al producto indicado y se
+ * almacena en el sistema.
+ */
     @FXML
     public void createOffer() {
         boolean correct = true;
@@ -85,6 +98,10 @@ public class CreateOfferController implements Initializable {
         }
     }
 
+    /**
+ * Elimina una oferta asociada al producto seleccionado
+ * tras validar los datos introducidos por el usuario.
+ */
     @FXML
     public void deleteOffer() {
         Offer o = null;

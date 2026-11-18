@@ -5,6 +5,12 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+/**
+Clase encargada de configurar y gestionar el registro de eventos
+de la aplicación en un archivo de log.
+
+@author G.2
+*/
 public class LoggerClass {
 
     private static final Logger LOGGER =Logger.getLogger("IceaLogger"); //crea el logger

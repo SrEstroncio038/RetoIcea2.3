@@ -15,6 +15,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
+/**
+Controlador encargado de gestionar el perfil del usuario.
+Muestra los datos personales del cliente y las compras realizadas.
+Permite volver a la pantalla principal y acceder a la pantalla
+de devolución de compras.
+
+@author G.2
+*/
 public class UserProfileController implements Initializable {
 
     @FXML

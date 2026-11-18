@@ -15,8 +15,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.bson.types.ObjectId;
 
+/**
+Implementación de la interfaz ProductDAO para gestionar los productos
+mediante una base de datos MongoDB.
+Permite consultar todos los productos, buscar un producto por su nombre
+y añadir nuevos productos a la colección products.
+
+@author G.2
+*/
 public class ImplementationProductBD implements ProductDAO {
 
+    /**
+Obtiene todos los productos almacenados en la base de datos.
+Recupera sus nombres, precios y stock y los añade a una lista observable.
+
+@return lista observable con la información de todos los productos.
+*/
     @Override
     public ObservableList<String> showAllProductos() {
         MongoCollection<Document> resultados = DBConection.getInstancia().getColeccion("products");
@@ -27,6 +41,14 @@ public class ImplementationProductBD implements ProductDAO {
         return items;
     }
 
+    /**
+Busca un producto en la base de datos mediante su nombre.
+Recupera también sus características, como el material, color,
+altura, peso y anchura.
+
+@param name nombre del producto que se desea buscar.
+@return producto encontrado con sus características o null si no existe.
+*/
     @Override
     public Product showOneProduct(String name) {
         Characteristics c = new Characteristics();
@@ -48,6 +70,14 @@ public class ImplementationProductBD implements ProductDAO {
         return p;
     }
 
+    /**
+Añade un nuevo producto a la colección products de MongoDB.
+Antes de insertarlo, comprueba si ya existe otro producto con el mismo nombre.
+Si existe, lanza una excepción para evitar duplicados.
+
+@param p producto que se desea añadir a la base de datos.
+@throws ProductExistsException si el producto ya existe.
+*/
     @Override
     public void addProduct(Product p) throws ProductExistsException {
         if (showOneProduct(p.getNombre()) != null) {

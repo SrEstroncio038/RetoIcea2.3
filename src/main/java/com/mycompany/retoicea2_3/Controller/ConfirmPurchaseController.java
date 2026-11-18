@@ -18,6 +18,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import org.bson.types.ObjectId;
 
+/**
+ * Controlador de la vista de confirmación de compra.
+ * Gestiona la validación de los datos de pago, la creación
+ * de la compra y la actualización del carrito del cliente.
+ *
+ * @author G.2
+ */
 public class ConfirmPurchaseController implements Initializable {
 
     private PurchaseController purchaseController = new PurchaseController();
@@ -49,6 +56,13 @@ public class ConfirmPurchaseController implements Initializable {
         lvCart.setItems(o);
     }
 
+    /**
+ * Valida los datos introducidos por el usuario para realizar la
+ * compra. Si los datos son correctos, crea la compra, la almacena
+ * en la base de datos, vacía el carrito y vuelve a la vista principal.
+ *
+ * @throws IOException si se produce un error al cargar la vista principal.
+ */
     @FXML
     public void confirmPurcahse() throws IOException {
         boolean correct = true;

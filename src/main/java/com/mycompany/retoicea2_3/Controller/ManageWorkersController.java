@@ -13,6 +13,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
+/**
+ * Controlador de la vista de gestión de trabajadores.
+ * Permite visualizar, modificar, eliminar y registrar
+ * trabajadores dentro del sistema.
+ *
+ * @author G.2
+ */
 public class ManageWorkersController implements Initializable {
 
     @FXML

@@ -15,6 +15,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ * Controlador principal de la aplicación.
+ * Gestiona la navegación entre vistas, muestra los productos
+ * disponibles y adapta las opciones visibles según el tipo
+ * de usuario que haya iniciado sesión.
+ *
+ * @author G.2
+ */
 public class MainViewController implements Initializable {
 
     @FXML

@@ -13,11 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
-/**
- * FXML Controller class
- *
- * @author asola
- */
 public class ManageWorkersController implements Initializable {
 
     @FXML
@@ -35,9 +30,6 @@ public class ManageWorkersController implements Initializable {
     
     WorkerController workerController = new WorkerController();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         selectedWorker=null;

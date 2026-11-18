@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Model.Offer;
@@ -21,11 +17,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author asola
- */
 public class CreateOfferController implements Initializable {
 
     @FXML
@@ -46,14 +37,10 @@ public class CreateOfferController implements Initializable {
     ProductController productController = new ProductController();
     OfferController offerController = new OfferController();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> productos = productController.showAllProductos();
         cmbProduct.setItems(productos);
-
     }
 
     @FXML

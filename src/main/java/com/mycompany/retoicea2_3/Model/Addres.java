@@ -1,6 +1,5 @@
 package com.mycompany.retoicea2_3.Model;
 
-
 public class Addres {
 
     private int houseNumber;

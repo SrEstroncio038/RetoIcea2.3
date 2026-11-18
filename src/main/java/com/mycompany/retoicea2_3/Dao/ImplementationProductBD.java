@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.retoicea2_3.Dao;
 
 import com.mycompany.retoicea2_3.Model.*;
@@ -18,10 +14,6 @@ import org.bson.Document;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**
- *
- * @author asola
- */
 public class ImplementationProductBD implements ProductDAO {
 
     @Override

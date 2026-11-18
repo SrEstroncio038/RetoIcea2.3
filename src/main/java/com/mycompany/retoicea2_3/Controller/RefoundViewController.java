@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Model.Client;
@@ -25,11 +21,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import org.bson.types.ObjectId;
 
-/**
- * FXML Controller class
- *
- * @author asola
- */
 public class RefoundViewController implements Initializable {
 
     @FXML
@@ -43,9 +34,6 @@ public class RefoundViewController implements Initializable {
 
     RefoundController rc = new RefoundController();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<Product> items = FXCollections.observableArrayList();
@@ -80,9 +68,7 @@ public class RefoundViewController implements Initializable {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setContentText("Product refounded: ");
             alerta.showAndWait();
-
         }
-
     }
 
     @FXML

@@ -31,9 +31,6 @@ public class LoginController implements Initializable {
 
     UserController userController = new UserController();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }

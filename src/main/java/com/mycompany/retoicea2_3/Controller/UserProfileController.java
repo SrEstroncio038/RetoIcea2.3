@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.mycompany.retoicea2_3.Controller;
 
 import com.mycompany.retoicea2_3.Model.Client;
@@ -19,11 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
-/**
- * FXML Controller class
- *
- * @author asola
- */
 public class UserProfileController implements Initializable {
 
     @FXML
@@ -41,9 +32,6 @@ public class UserProfileController implements Initializable {
     @FXML
     private Button refundButton;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<Purchase> items = FXCollections.observableArrayList();

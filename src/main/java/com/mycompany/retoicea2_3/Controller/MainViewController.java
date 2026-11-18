@@ -99,4 +99,9 @@ public class MainViewController implements Initializable {
     public void manageProduct() throws IOException {
         App.setRoot("ManageProduct");
     }
+
+    @FXML
+    public void userProfile() throws IOException {
+        App.setRoot("UserProfile");
+    }
 }

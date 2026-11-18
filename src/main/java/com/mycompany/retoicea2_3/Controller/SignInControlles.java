@@ -41,7 +41,6 @@ public class SignInControlles implements Initializable {
     private TextField city;
     @FXML
     private PasswordField passwrd;
-    @FXML
     private PasswordField confirmPasswrd;
     @FXML
     private DatePicker birthday;
@@ -49,6 +48,8 @@ public class SignInControlles implements Initializable {
     private Button register;
 
     private UserController userController = new UserController();
+    @FXML
+    private PasswordField rpasswrd;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,7 +100,7 @@ public class SignInControlles implements Initializable {
             alert.setContentText("Invalid password.");
             alert.showAndWait();
         }
-        if (!confirmPasswrd.getText().equals(passwrd.getText())) {
+        if (!rpasswrd.getText().equals(passwrd.getText())) {
             correct = false;
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("SingnIn Error");

@@ -23,6 +23,7 @@ import javafx.scene.control.ListView;
  */
 public class ManageProductController implements Initializable {
 
+   
     @FXML
     private Button btnHome;
     @FXML
@@ -35,9 +36,9 @@ public class ManageProductController implements Initializable {
     private Button btnModify;
     @FXML
     private ListView<Product> products;
-    
+
     public static Product selectedProductToModify = null;
-    
+
     ProductController productController = new ProductController();
 
     /**
@@ -47,23 +48,23 @@ public class ManageProductController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ProductController productController = new ProductController();
         products.setItems(productController.showAllProductos());
-    }    
-    
+    }
+
     @FXML
     public void home() throws IOException {
         App.setRoot("MainView");
     }
-    
+
     @FXML
     public void offers() throws IOException {
         App.setRoot("CreateOffer");
     }
-    
+
     @FXML
     public void singUp() throws IOException {
         App.setRoot("AddProduct");
     }
-    
+
     @FXML
     public void modify() throws IOException {
         boolean isValid = true;
@@ -81,7 +82,7 @@ public class ManageProductController implements Initializable {
             App.setRoot("AddProduct");
         }
     }
-    
+
     @FXML
     public void remove() {
         boolean isValid = true;
@@ -100,5 +101,5 @@ public class ManageProductController implements Initializable {
             products.setItems(productController.showAllProductos());
         }
     }
-    
+
 }

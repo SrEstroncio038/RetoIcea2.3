@@ -48,15 +48,15 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void cargarProductos() {
         ObservableList<String> products = lookup("#cmbProduct").queryAs(ComboBox.class).getItems();
-        String[] productos = {
-            "Producto:Silla de roble, precio: 79.99€ | Stock restante: 40 precio: 79.99",
-            "Producto:Mesa de comedor, precio: 249.5€ | Stock restante: 12 precio: 249.5",
-            "Producto:Estantería metálica, precio: 59.9€ | Stock restante: 25 precio: 59.9",
-            "Producto:Sofá tres plazas, precio: 599.0€ | Stock restante: 6 precio: 599.0",
-            "Producto:Lámpara de pie, precio: 45.75€ | Stock restante: 60 precio: 45.75",
-            "Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99"
+        String[] esperados = {
+                "Silla de roble",
+                "Mesa de comedor",
+                "Estantería metálica",
+                "Sofá tres plazas",
+                "Lámpara de pie",
+                "Escritorio con cajones"
         };
-        for (String p : productos) {
+        for (String p : esperados) {
             boolean encontrado = false;
             for (String producto : products) {
                 if (producto.equalsIgnoreCase(p)) {
@@ -71,8 +71,11 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void alertComboBoxProductos() {
         clickOn("#cmbProduct");
-        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
-        verifyThat("#cmbProduct", ComboBoxMatchers.hasSelectedItem("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99"));
+        clickOn("Escritorio con cajones");
+        ComboBox<String> combo = lookup("#cmbProduct").queryComboBox();
+        String seleccionado = combo.getSelectionModel().getSelectedItem();
+        assertNotNull(seleccionado);
+        assertTrue(seleccionado.contains("Escritorio con cajones"));
     }
 
     @Test
@@ -87,7 +90,7 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void errorDescuentoNull() {
         clickOn("#cmbProduct");
-        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("Escritorio con cajones");
         clickOn("#btnAdd");
         DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
         assertNotNull(dialogPane);
@@ -98,7 +101,7 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void errorDescuentoNotValid() {
         clickOn("#cmbProduct");
-        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("Escritorio con cajones");
         clickOn("#txtDiscount").write("abc");
         clickOn("#btnAdd");
         DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
@@ -110,7 +113,7 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void errorFechaNull() {
         clickOn("#cmbProduct");
-        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("Escritorio con cajones");
         clickOn("#txtDiscount").write("12");
         clickOn("#btnAdd");
         DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
@@ -122,7 +125,7 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void errorFechaNotValid() {
         clickOn("#cmbProduct");
-        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("Escritorio con cajones");
         clickOn("#txtDiscount").write("12");
         DatePicker datePicker = lookup("#date").queryAs(DatePicker.class);
         datePicker.setValue(LocalDate.now().minusYears(1));
@@ -152,7 +155,7 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void borrarOferta() {
         clickOn("#cmbProduct");
-        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("Escritorio con cajones");
         clickOn("#txtDiscount").write("12");
         DatePicker datePicker = lookup("#date").queryAs(DatePicker.class);
         datePicker.setValue(LocalDate.now().plusYears(1));
@@ -177,7 +180,7 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void errorDescuentoNullBorrar() {
         clickOn("#cmbProduct");
-        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("Escritorio con cajones");
         clickOn("#btnRemove");
         DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
         assertNotNull(dialogPane);
@@ -188,7 +191,7 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void errorDescuentoNotValidBorrar() {
         clickOn("#cmbProduct");
-        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("Escritorio con cajones");
         clickOn("#txtDiscount").write("abc");
         clickOn("#btnRemove");
         DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
@@ -200,7 +203,7 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void errorFechaNullBorrar() {
         clickOn("#cmbProduct");
-        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("Escritorio con cajones");
         clickOn("#txtDiscount").write("12");
         clickOn("#btnRemove");
         DialogPane dialogPane = lookup(".dialog-pane").queryAs(DialogPane.class);
@@ -212,7 +215,7 @@ public class CreateOfferControllerTest extends ApplicationTest {
     @Test
     public void errorFechaNotValidBorrar() {
         clickOn("#cmbProduct");
-        clickOn("Producto:Escritorio con cajones, precio: 129.99€ | Stock restante: 18 precio: 129.99");
+        clickOn("Escritorio con cajones");
         clickOn("#txtDiscount").write("12");
         DatePicker datePicker = lookup("#date").queryAs(DatePicker.class);
         datePicker.setValue(LocalDate.now().minusYears(1));

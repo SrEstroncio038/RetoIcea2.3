@@ -90,7 +90,7 @@ public class AddProductController implements Initializable {
     @FXML
     private void back(ActionEvent event) throws IOException {
         ManageProductController.selectedProductToModify = null;
-        App.setRoot("ManageProduct");
+        App.setRoot("ManageProducts");
     }
 
     @FXML
@@ -185,7 +185,7 @@ public class AddProductController implements Initializable {
                 }
 
                 ManageProductController.selectedProductToModify = null;
-                App.setRoot("ManageProduct");
+                App.setRoot("ManageProducts");
             } catch (ProductExistsException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Add Product Error");

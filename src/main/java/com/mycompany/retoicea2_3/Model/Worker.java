@@ -38,6 +38,14 @@ public class Worker extends Usuario{
     public void setSeniority(int seniority) {
         this.seniority = seniority;
     }
+    
+    public String getPassword() {
+        return super.getPassword();
+    }
+
+    public void setPassword(String password) {
+        super.setPassword(password);
+    }
 
     public Worker() {
     }

@@ -23,4 +23,12 @@ public class WorkerController {
     public void deleteWorker(String userId){
         dao.deleteWorker(userId);
     }
+    
+    public void updateWorker(Worker worker, String userId){
+        dao.updateWorker(worker, userId);
+    }
+    
+    public void insertWorker(Worker worker){
+    dao.insertWorker(worker);
+}
 }

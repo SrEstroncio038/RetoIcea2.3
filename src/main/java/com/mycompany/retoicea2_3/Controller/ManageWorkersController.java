@@ -32,6 +32,7 @@ public class ManageWorkersController implements Initializable {
     private ListView<String> workers;
     
     public static Worker selectedWorker;
+    public static String selectedUserId;
     
     WorkerController workerController = new WorkerController();
 
@@ -51,6 +52,7 @@ public class ManageWorkersController implements Initializable {
         if (selectedText != null) {
             String[] parts = selectedText.split(" ");
             String userId = parts[parts.length - 1];
+            selectedUserId=userId;
             selectedWorker = workerController.showOneWorker(userId);
             if (selectedWorker != null) {
                 App.setRoot("AddWorker");

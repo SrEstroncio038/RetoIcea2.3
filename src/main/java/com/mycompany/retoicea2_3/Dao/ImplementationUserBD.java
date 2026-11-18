@@ -9,6 +9,7 @@ import com.mycompany.retoicea2_3.Model.Usuario;
 import com.mycompany.retoicea2_3.Model.Worker;
 import java.util.ArrayList;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 public class ImplementationUserBD implements UserDAO {
 
@@ -26,6 +27,7 @@ public class ImplementationUserBD implements UserDAO {
                     .append("floorLetter", String.valueOf(c.getAddress().getLetter()));
 
             Document user = new Document()
+                    .append("userId", new ObjectId())
                     .append("username", c.getUser())
                     .append("name", c.getName())
                     .append("surname", c.getSurname())
